@@ -322,7 +322,7 @@ const run = async () => {
 
   const res = await process();
 
-  console.log(res);
+  console.log("Migration done...");
 
   await client.end();
 };
