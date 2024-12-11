@@ -300,7 +300,7 @@ const run = async () => {
 
         if (promises.length > 19) {
           console.log("executing 20");
-          await Promise.all(promises);
+          await Promise.all(promises).catch(console.error);
           promises = [];
         }
       } catch (err) {
@@ -309,7 +309,7 @@ const run = async () => {
     }
     if (promises.length) {
       console.log("executing " + promises.length);
-      await Promise.all(promises);
+      await Promise.all(promises).catch(console.error);
       promises = [];
     }
     if (slice.length === READ_COUNT) {
