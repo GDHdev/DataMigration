@@ -1,0 +1,185 @@
+[
+  {
+    "id": 3,
+    "name": "Ekonomi",
+    "slug": "ekonomi",
+    "mapped": "ekonomi",
+    "icon": {
+      "key": "7ca24de4-4383-4477-bf7b-b6dfff1d9500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/7ca24de4-4383-4477-bf7b-b6dfff1d9500/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "a24477dc-ba1f-4357-58be-e09fb48cdc00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/a24477dc-ba1f-4357-58be-e09fb48cdc00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "seo": {
+      "title": "Ekonomi Haberleri - Ekonomideki Son Dakika Gelişmeleri",
+      "description": "Ekonomideki son dakika gelişmelerinden haberdar olun. Döviz, altın, bitcoin, borsa ve serbest piyasalardan ilk sizin haberiniz olsun."
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": null
+  },
+  {
+    "id": 2,
+    "name": "Dünya",
+    "mapped": "dunya",
+    "slug": "dunya",
+    "icon": {
+      "key": "7851aebe-9d02-4365-68b8-7afa77a2ac00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/7851aebe-9d02-4365-68b8-7afa77a2ac00/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "95b76c12-fbdb-4e0f-2c85-7701f6978200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/95b76c12-fbdb-4e0f-2c85-7701f6978200/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "seo": {
+      "title": "Dünya Haberleri ve Dünya Ülkelerinden Son Dakika Gelişmeler",
+      "description": "Dünya haberlerini ilk okuyan siz olun. Dünya ülkelerinden son dakika gelişmelerden haberiniz olsun."
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": {
+      "key": "a8694139-22d3-4e4c-22ea-fe217871c100",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/a8694139-22d3-4e4c-22ea-fe217871c100/public",
+      "width": 736,
+      "height": 320
+    }
+  },
+  {
+    "id": 5,
+    "name": "Yaşam",
+    "mapped": "yasam",
+    "slug": "yasam",
+    "icon": {
+      "key": "6e938644-bc33-4ed1-263d-daff7098e400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6e938644-bc33-4ed1-263d-daff7098e400/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "e8e2331f-1d0b-46ae-13c7-e1eb3fcb3800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/e8e2331f-1d0b-46ae-13c7-e1eb3fcb3800/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "seo": {
+      "title": "Yaşam Haberleri",
+      "description": "Yaşam haberlerindeki son dakika gelişmelerinden haberdar olun."
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": null
+  },
+  {
+    "id": 1,
+    "name": "Gündem",
+    "mapped": "gundem",
+    "slug": "gundem",
+    "icon": {
+      "key": "c6246cf8-5e45-43be-c081-8bb04edcae00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/c6246cf8-5e45-43be-c081-8bb04edcae00/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "e8255ba8-69fa-48c9-ba1e-a21e13dae000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/e8255ba8-69fa-48c9-ba1e-a21e13dae000/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": "#f5d0d0",
+    "seo": {
+      "title": "gündeme dair her şey",
+      "description": "Gündeme dair en son gelişmelerden anında haberdar olun."
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": null
+  },
+  {
+    "id": 8,
+    "name": "Kültür Sanat ",
+    "slug": "kultur-sanat",
+    "mapped": "kultur-sanat",
+    "icon": {
+      "key": "d06a2b6b-6e12-4d10-00f3-5436ab098500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/d06a2b6b-6e12-4d10-00f3-5436ab098500/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "a48585a7-9795-44e3-3c7e-b716b2d89b00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/a48585a7-9795-44e3-3c7e-b716b2d89b00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "seo": {
+      "title": "Kültür Sanat Haberleri - Kültür Sanat alanındaki Son Dakika Gelişmeleri",
+      "description": "Kültür Sanat alanındaki son dakika gelişmelerinden haberdar olun. Tiyatro, sinema, sanat etkinlikleri, görsel sanatlar ve etkinliklerden ilk sizin haberiniz olsun."
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": {
+      "key": "59f575a5-feb5-497f-4c0a-43541a3db000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/59f575a5-feb5-497f-4c0a-43541a3db000/public",
+      "width": 736,
+      "height": 320
+    }
+  },
+  {
+    "id": 7,
+    "name": "Sağlık",
+    "slug": "saglik",
+    "mapped": "saglik",
+    "icon": {
+      "key": "936c87ce-1f25-4c0e-1976-c22750963a00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/936c87ce-1f25-4c0e-1976-c22750963a00/public",
+      "width": 512,
+      "height": 512
+    },
+    "brand_id": 1,
+    "description": "",
+    "banner": {
+      "key": "424a0349-7ce5-4e4a-4009-f40cd0b70100",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/424a0349-7ce5-4e4a-4009-f40cd0b70100/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "seo": {
+      "title": "Sağlık Haberleri - Sağlıktaki Son Dakika Gelişmeleri",
+      "description": "Sağlıktaki son dakika gelişmelerinden haberdar olun. Sağlık Bakanlığı duyuruları, sağlık haberleri ve güncel sağlık konularından ilk sizin haberiniz olsun.   "
+    },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": {
+      "key": "4b01ec19-637a-4bd2-fb8d-60ec13f42000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/4b01ec19-637a-4bd2-fb8d-60ec13f42000/public",
+      "width": 736,
+      "height": 320
+    }
+  }
+]

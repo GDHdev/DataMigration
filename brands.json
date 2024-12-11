@@ -1,0 +1,578 @@
+[
+  {
+    "id": 4,
+    "name": "gdh tarih",
+    "slug": "gdhtarih",
+    "mapped": "tarih",
+    "icon": {
+      "key": "6c7894a6-352f-415c-7dca-3690af7ae100",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6c7894a6-352f-415c-7dca-3690af7ae100/public",
+      "width": 600,
+      "height": 600
+    },
+    "description": null,
+    "banner": {
+      "key": "9bee87a2-3fd3-4e1b-faab-1e0e1775f400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/9bee87a2-3fd3-4e1b-faab-1e0e1775f400/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "e1f6912e-6b44-4d8f-6d0d-e1454cb42b00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/e1f6912e-6b44-4d8f-6d0d-e1454cb42b00/public",
+      "width": 11827,
+      "height": 2700
+    },
+    "seo": {
+      "title": "gdh tarih | Tarih Haberleri - Tarihte Bugünün Gelişmeleri",
+      "description": "Tarih haberleri ve tarihte bugün gerçekleşen gelişmeler. Tarihi bilgiler ve hikayeler."
+    },
+    "styles": { "bannerTextColor": "#ffffff" },
+    "featured": 6,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 5,
+    "name": "tarih dozu",
+    "slug": "tarihdozu",
+    "mapped": "tarih",
+    "icon": {
+      "key": "ce397aab-0fd2-49b1-142b-e6e4f26c6e00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/ce397aab-0fd2-49b1-142b-e6e4f26c6e00/public",
+      "width": 600,
+      "height": 600
+    },
+    "description": null,
+    "banner": {
+      "key": "01e7826a-d320-4da1-7d97-52295aa2a800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/01e7826a-d320-4da1-7d97-52295aa2a800/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "da62d913-1109-441e-3cd0-6bab85c78d00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/da62d913-1109-441e-3cd0-6bab85c78d00/public",
+      "width": 2373,
+      "height": 564
+    },
+    "seo": {
+      "title": "tarih dozu | Her Güne 1 Tarih İçeriği",
+      "description": "Günlük tarih dozunuz. Tarihten her gün 1 içerik ile yeni bir şey öğrenin."
+    },
+    "styles": { "bannerTextColor": "#0a0530" },
+    "featured": 7,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 8,
+    "name": "pozitif biraz",
+    "slug": "pozitifbiraz",
+    "icon": {
+      "key": "538f5b3b-f316-455d-7e28-93bbf41e5000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/538f5b3b-f316-455d-7e28-93bbf41e5000/public",
+      "width": 512,
+      "height": 512
+    },
+    "description": "",
+    "banner": {
+      "key": "997ff809-48f1-48b6-6259-8631335a8900",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/997ff809-48f1-48b6-6259-8631335a8900/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "7b656e5e-da28-40e5-d6f4-1cfe93b5d600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/7b656e5e-da28-40e5-d6f4-1cfe93b5d600/public",
+      "width": 3978,
+      "height": 622
+    },
+    "seo": {
+      "title": "Pozitif Biraz | Pozitif İçerikler Sayfası",
+      "description": "Sadece gülmek, eğlenmek, pozitif şeylerin peşinde olmak isteyenler için. "
+    },
+    "styles": { "bannerTextColor": "#010433" },
+    "featured": 11,
+    "mobile_banner": {
+      "key": "0ab9a9ab-768d-4af2-3453-661e4f769300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/0ab9a9ab-768d-4af2-3453-661e4f769300/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 2,
+    "name": "gdh defence",
+    "slug": "gdhdefence",
+    "mapped": "savunma",
+    "icon": {
+      "key": "b42995b2-28b1-417a-efd1-13ea3f024500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b42995b2-28b1-417a-efd1-13ea3f024500/public",
+      "width": 600,
+      "height": 600
+    },
+    "description": null,
+    "banner": {
+      "key": "58c65b82-7cad-4e9b-842e-3408c13f8f00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/58c65b82-7cad-4e9b-842e-3408c13f8f00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "1ca350a4-9eb4-4041-1f5a-84ebae7d3500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/1ca350a4-9eb4-4041-1f5a-84ebae7d3500/public",
+      "width": 4897,
+      "height": 648
+    },
+    "seo": {
+      "title": "gdh defence | Savunma Haberleri ve Askeri Gelişmeler",
+      "description": "Dünyadan savunma haberleri, savunma gelişmeleri, mühimmat ve askeri silahlar ile ilgili gelişmeler."
+    },
+    "styles": { "bannerTextColor": "#000a30" },
+    "featured": 2,
+    "mobile_banner": {
+      "key": "b617e985-abc9-4db7-5ba9-d462d4bace00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b617e985-abc9-4db7-5ba9-d462d4bace00/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 16,
+    "name": "SEÇİM 2023",
+    "slug": "secim2023",
+    "icon": {
+      "key": "3862de33-44db-43b5-ca08-52e1835dbc00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/3862de33-44db-43b5-ca08-52e1835dbc00/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "description": "",
+    "banner": {
+      "key": "e0dc3c26-4a1a-4dd9-f69a-ead34cee4e00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/e0dc3c26-4a1a-4dd9-f69a-ead34cee4e00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "9e21033f-a199-415c-e49d-ae33676a9900",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/9e21033f-a199-415c-e49d-ae33676a9900/public",
+      "width": 10894,
+      "height": 2081
+    },
+    "seo": {
+      "title": "SEÇİM 2023",
+      "description": " 2023 Cumhurbaşkanlığı ve 28. Dönem Milletvekili Genel Seçimi'nde anlık veriler, grafikler, il ve bölge bazında oy oranları ve canlı yayınlar"
+    },
+    "styles": {},
+    "featured": 40,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 1,
+    "name": "gdh haber",
+    "slug": "gdhhaber",
+    "icon": {
+      "key": "f6a8f3ed-729a-4015-7879-25d0351c4d00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/f6a8f3ed-729a-4015-7879-25d0351c4d00/public",
+      "width": 512,
+      "height": 512
+    },
+    "description": null,
+    "banner": {
+      "key": "231764f7-8cb5-401f-3095-e43bcc4e7800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/231764f7-8cb5-401f-3095-e43bcc4e7800/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": "#000000",
+    "logo": {
+      "key": "969ee4d1-013e-4c19-3981-b38e7c0a8300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/969ee4d1-013e-4c19-3981-b38e7c0a8300/public",
+      "width": 2645,
+      "height": 564
+    },
+    "seo": {
+      "title": "gdh haber | Haber ve Sondakika Gelişmeleri",
+      "description": "Gündeme Dair Her Şey, haber ve sondakika gelişmeleri. Anlık ve güncel haberler."
+    },
+    "styles": { "bannerHideText": false, "bannerTextColor": "#030138" },
+    "featured": 1,
+    "mobile_banner": {
+      "key": "6b771e3f-3a0d-42b9-353b-f3c7db923600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6b771e3f-3a0d-42b9-353b-f3c7db923600/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 3,
+    "name": "gdh spor",
+    "mapped": "spor",
+    "slug": "gdhspor",
+    "icon": {
+      "key": "64e1bfbb-4f3c-4d22-7031-792bfe660400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/64e1bfbb-4f3c-4d22-7031-792bfe660400/public",
+      "width": 600,
+      "height": 600
+    },
+    "description": null,
+    "banner": {
+      "key": "771a1092-27cf-4b18-d029-c03d10ba0400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/771a1092-27cf-4b18-d029-c03d10ba0400/public",
+      "width": 1500,
+      "height": 500
+    },
+    "color": null,
+    "logo": {
+      "key": "47baf38c-09a0-4f28-f785-305941c84500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/47baf38c-09a0-4f28-f785-305941c84500/public",
+      "width": 4897,
+      "height": 648
+    },
+    "seo": {
+      "title": "gdh spor | Spor Haberleri - Sondakika Spor Gelişmeleri",
+      "description": "Spor haberleri ve spor dünyasından sondakika gelişeleri, spor branşları ile ilgili detaylı haberler."
+    },
+    "styles": { "bannerTextColor": "#15005c" },
+    "featured": 4,
+    "mobile_banner": {
+      "key": "e38c978e-6310-448a-b13d-7165d30cc600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/e38c978e-6310-448a-b13d-7165d30cc600/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 6,
+    "name": "spor dozu",
+    "mapped": "spor",
+    "slug": "spordozu",
+    "icon": {
+      "key": "1755e338-3133-454e-5e63-f639c1896f00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/1755e338-3133-454e-5e63-f639c1896f00/public",
+      "width": 600,
+      "height": 600
+    },
+    "description": null,
+    "banner": {
+      "key": "b3a611ca-e810-43bf-fb42-29673eb0ab00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b3a611ca-e810-43bf-fb42-29673eb0ab00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "5b3149d7-ba78-45a2-8917-6c3a78f9c600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/5b3149d7-ba78-45a2-8917-6c3a78f9c600/public",
+      "width": 2292,
+      "height": 564
+    },
+    "seo": {
+      "title": "spor dozu | Her Güne 1 Spor İçeriği",
+      "description": "Günlük spor dozunuz. Spor tarihinden her gün 1 içerik ile yeni bir şey öğrenin."
+    },
+    "styles": { "bannerTextColor": "#000000" },
+    "featured": 5,
+    "mobile_banner": {
+      "key": "c752df07-f677-40cb-2918-57fa82a64300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/c752df07-f677-40cb-2918-57fa82a64300/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 20,
+    "name": "infografik",
+    "slug": "infografik",
+    "mapped": "infografik",
+    "icon": {
+      "key": "19d10e7c-314f-4c03-46cb-f131ceabd700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/19d10e7c-314f-4c03-46cb-f131ceabd700/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "description": null,
+    "banner": {
+      "key": "239cbbaf-dec7-436b-b893-397231f79400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/239cbbaf-dec7-436b-b893-397231f79400/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": null,
+    "seo": { "title": "infografik", "description": "gdh infografik " },
+    "styles": {},
+    "featured": 16,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 13,
+    "name": "dünyadan uzak",
+    "slug": "dunyadanuzak",
+    "mapped": "dunyadan-uzak",
+    "icon": {
+      "key": "6a090df2-3390-442e-21c8-ae45046c0e00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6a090df2-3390-442e-21c8-ae45046c0e00/public",
+      "width": 500,
+      "height": 500
+    },
+    "description": "",
+    "banner": {
+      "key": "d52ef877-94f7-4df5-8331-8c7c1f23b500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/d52ef877-94f7-4df5-8331-8c7c1f23b500/public",
+      "width": 1300,
+      "height": 600
+    },
+    "color": "#6e3880",
+    "logo": {
+      "key": "a262e6af-c73b-43ab-4c30-ccba2fdf3a00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/a262e6af-c73b-43ab-4c30-ccba2fdf3a00/public",
+      "width": 3716,
+      "height": 622
+    },
+    "seo": {
+      "title": "dünyadan uzak | Uzayın derinliklerinden evrenin göz alıcı güzellikleri",
+      "description": "Galaksilerden yıldızlara, kara deliklerden meteorlara astronomi dünyasından içeriklerle hayatınıza değer katın."
+    },
+    "styles": { "bannerTextColor": "#6e3880" },
+    "featured": 10,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 14,
+    "name": "TEKNOFEST",
+    "slug": "teknofest",
+    "mapped": "teknofest",
+    "icon": {
+      "key": "bed2e803-3a31-4480-32f6-dc00e4382f00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/bed2e803-3a31-4480-32f6-dc00e4382f00/public",
+      "width": 500,
+      "height": 500
+    },
+    "description": null,
+    "banner": {
+      "key": "2bc7d02a-9547-4753-3d80-d34db8b95900",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/2bc7d02a-9547-4753-3d80-d34db8b95900/public",
+      "width": 1300,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "11354215-f9a0-4eb3-9387-5a48b4de2f00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/11354215-f9a0-4eb3-9387-5a48b4de2f00/public",
+      "width": 3716,
+      "height": 622
+    },
+    "seo": {
+      "title": "TEKNOFEST",
+      "description": "Türkiye'nin ve dünyanın en büyük teknoloji festivali TEKNOFEST'ten en güncel haberler, podcast'lar, canlı yayınlar."
+    },
+    "styles": { "bannerHideText": false, "bannerTextColor": "#250a91" },
+    "featured": 14,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 15,
+    "name": "haftalık",
+    "slug": "haftalik",
+    "mapped": "haftalik",
+    "icon": {
+      "key": "c507b566-9372-4181-8b5d-5092a0d64600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/c507b566-9372-4181-8b5d-5092a0d64600/public",
+      "width": 500,
+      "height": 500
+    },
+    "description": "",
+    "banner": null,
+    "color": null,
+    "logo": {
+      "key": "24106c82-908b-4c69-88c4-bde177a7f900",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/24106c82-908b-4c69-88c4-bde177a7f900/public",
+      "width": 8000,
+      "height": 1784
+    },
+    "seo": {
+      "title": "haftalık",
+      "description": "Türkiye'den ve dünyadan öne çıkan haberler, analizler ve infografiklerle haftalık bültenimizde..."
+    },
+    "styles": {},
+    "featured": 12,
+    "mobile_banner": null,
+    "layout": "newsletter"
+  },
+  {
+    "id": 7,
+    "name": "yakın plan",
+    "slug": "yakinplan",
+    "mapped": "yakin-plan",
+    "icon": {
+      "key": "72fa9287-9830-4c41-4889-5e0152118400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/72fa9287-9830-4c41-4889-5e0152118400/public",
+      "width": 512,
+      "height": 512
+    },
+    "description": "",
+    "banner": {
+      "key": "bf4c900a-fb13-48e5-9f6f-daffb52cdd00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/bf4c900a-fb13-48e5-9f6f-daffb52cdd00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "b0af0650-b6b6-4b4f-ce4d-9e2f518ffe00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b0af0650-b6b6-4b4f-ce4d-9e2f518ffe00/public",
+      "width": 3716,
+      "height": 622
+    },
+    "seo": {
+      "title": "yakın plan | Dünyadaki Gelişmeler Özel Haberler ve Analizler",
+      "description": "Türkiye'den ve dünyadan gelişmelerin özel haberleri, analizler ve son dakika gelişmeleri."
+    },
+    "styles": {},
+    "featured": 3,
+    "mobile_banner": {
+      "key": "cbb05ac4-dcb1-415c-71c2-e2e0b5275500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/cbb05ac4-dcb1-415c-71c2-e2e0b5275500/public",
+      "width": 736,
+      "height": 320
+    },
+    "layout": null
+  },
+  {
+    "id": 21,
+    "name": "Seçim 2024",
+    "slug": "secim2024",
+    "icon": {
+      "key": "69f9f820-4f62-4c8c-14b1-29435ce78500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/69f9f820-4f62-4c8c-14b1-29435ce78500/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "description": "",
+    "banner": {
+      "key": "133a213e-b404-4fef-cd36-d0a856b13a00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/133a213e-b404-4fef-cd36-d0a856b13a00/public",
+      "width": 1126,
+      "height": 350
+    },
+    "color": null,
+    "logo": null,
+    "seo": { "title": "Seçim 2024", "description": "Seçim 2024" },
+    "styles": {},
+    "featured": 0,
+    "mobile_banner": {
+      "key": "6a2b7fd7-eae5-4ff9-44e1-dbf16e958300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6a2b7fd7-eae5-4ff9-44e1-dbf16e958300/public",
+      "width": 1126,
+      "height": 350
+    },
+    "layout": null
+  },
+  {
+    "id": 19,
+    "name": "teknoloji dozu",
+    "slug": "teknolojidozu",
+    "mapped": "teknoloji",
+
+    "icon": {
+      "key": "16e19a14-9c3f-4c0f-8b8e-0c3407b5b700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/16e19a14-9c3f-4c0f-8b8e-0c3407b5b700/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "description": "",
+    "banner": {
+      "key": "316a7da7-3a01-497d-b6b3-5bca9373d200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/316a7da7-3a01-497d-b6b3-5bca9373d200/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": "#1d4f96",
+    "logo": null,
+    "seo": { "title": "Teknoloji Dozu", "description": "Teknoloji Dozu" },
+    "styles": { "bannerTextColor": "#112c66" },
+    "featured": 10,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 12,
+    "name": "podcast ajansı",
+    "slug": "podcastajansi",
+    "mapped": "podcast-ajansi",
+    "icon": {
+      "key": "b9b06a6a-b75e-4cb2-7b55-d4be337f3000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b9b06a6a-b75e-4cb2-7b55-d4be337f3000/public",
+      "width": 512,
+      "height": 512
+    },
+    "description": null,
+    "banner": {
+      "key": "8d66aba4-8d95-4877-e7c7-d3be714bac00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/8d66aba4-8d95-4877-e7c7-d3be714bac00/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": {
+      "key": "4ae4722f-6280-4bd5-425b-cbdcd1b7c300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/4ae4722f-6280-4bd5-425b-cbdcd1b7c300/public",
+      "width": 3716,
+      "height": 622
+    },
+    "seo": {
+      "title": "podcast ajansı | Bilgilendirici ve Eğlenceli Podcastler",
+      "description": "Podcastlerimizle her gün yeni bir bilgiye ulaşın. Hayatınıza değer katacak podcastleri dinleyin."
+    },
+    "styles": { "bannerTextColor": "#000000" },
+    "featured": 12,
+    "mobile_banner": null,
+    "layout": null
+  },
+  {
+    "id": 18,
+    "name": "gdh teknoloji",
+    "slug": "teknoloji",
+    "mapped": "teknoloji",
+    "icon": {
+      "key": "3ebc35fc-0410-41eb-b69b-41749de3ef00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/3ebc35fc-0410-41eb-b69b-41749de3ef00/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "description": null,
+    "banner": {
+      "key": "f9cc5658-57b3-450e-9755-570e86e62400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/f9cc5658-57b3-450e-9755-570e86e62400/public",
+      "width": 2760,
+      "height": 600
+    },
+    "color": null,
+    "logo": null,
+    "seo": {
+      "title": "Teknoloji Haberleri - Mobil Cihazlar - Bilgisayar ve Yeni Teknoloji Ürünleri",
+      "description": "Teknoloji haberlerinen ve teknoloji dünyasındaki gelişmelerden ilk sizin haberiniz olsun. Cep telefonu, bilgisayar ve diğer mobil teknolojilerdeki son dakika gelişmeleri."
+    },
+    "styles": {},
+    "featured": 8,
+    "mobile_banner": null,
+    "layout": null
+  }
+]

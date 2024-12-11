@@ -1,0 +1,22 @@
+{
+  "name": "datamigration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@mobtakr/editorjs-parser": "^0.2.1",
+    "@son_xx/editor-js-parser": "^1.0.7",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "editorjs-parser": "^1.5.3",
+    "pg": "^8.13.1",
+    "pg-cursor": "^2.12.1",
+    "uuid": "^11.0.3"
+  }
+}
