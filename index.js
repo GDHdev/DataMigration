@@ -235,8 +235,8 @@ const run = async () => {
     ])
   ).map((i) => JSON.parse(i.toString("utf-8")));
 
-  oldBrands = oldBrands.filter((i) => i.mapped);
-  oldCategories = oldCategories.filter((i) => i.mapped);
+  oldBrands = oldBrands.filter((i) => !!i.mapped);
+  oldCategories = oldCategories.filter((i) => !!i.mapped);
 
   const { rows: newBrands } = await newClient.query(
     "SELECT * FROM brands WHERE deleted_at is not null"
@@ -296,53 +296,54 @@ const run = async () => {
       ) {
         console.log("editor brand or category does not exist");
         continue;
-      }
+      } else {
+        // create news
+        const brandId = newBrandMapping[row.brand_id]
+          ? newBrandMapping[row.brand_id].id
+          : newCategoryMapping[row.category_id].id;
+        if (brandId) {
+          const newsBody = {
+            id,
+            slug: `${row.slug}-${id}`,
+            title: row.title,
+            description: row.message,
+            content: parsedContent,
+            brand_id: brandId,
+            seo: row.seo,
+            status: "published",
+            is_premium: row.premium,
+            thumbnails: {
+              original: row.images[0]?.url,
+              "3x2": row.images[0]?.url,
+              "4x3": row.images[0]?.url,
+              "9x16": row.images[0]?.url,
+            },
+            number_of_views: row.stat_views,
+            import_id: row.id,
+            published_at: row.published_at,
+            created_by: newDbEditor.id,
+            created_at: row.created_at,
+            updated_at: row.updated_at,
+          };
+          try {
+            const creationProcess = async () => {
+              await createNews(newsBody);
 
-      // create news
-      const brandId = newBrandMapping[row.brand_id]
-        ? newBrandMapping[row.brand_id].id
-        : newCategoryMapping[row.category_id].id;
+              // create news <> editor relations
+              await createEditorNewsRelation(id, newDbEditor.id);
+            };
 
-      const newsBody = {
-        id,
-        slug: `${row.slug}-${id}`,
-        title: row.title,
-        description: row.message,
-        content: parsedContent,
-        brand_id: brandId,
-        seo: row.seo,
-        status: "published",
-        is_premium: row.premium,
-        thumbnails: {
-          original: row.images[0]?.url,
-          "3x2": row.images[0]?.url,
-          "4x3": row.images[0]?.url,
-          "9x16": row.images[0]?.url,
-        },
-        number_of_views: row.stat_views,
-        import_id: row.id,
-        published_at: row.published_at,
-        created_by: newDbEditor.id,
-        created_at: row.created_at,
-        updated_at: row.updated_at,
-      };
-      try {
-        const creationProcess = async () => {
-          await createNews(newsBody);
+            promises.push(creationProcess());
 
-          // create news <> editor relations
-          await createEditorNewsRelation(id, newDbEditor.id);
-        };
-
-        promises.push(creationProcess());
-
-        if (promises.length > 19) {
-          console.log("executing 20");
-          await Promise.all(promises).catch(console.error);
-          promises = [];
+            if (promises.length > 19) {
+              console.log("executing 20");
+              await Promise.all(promises).catch(console.error);
+              promises = [];
+            }
+          } catch (err) {
+            console.error(err);
+          }
         }
-      } catch (err) {
-        console.error(err);
       }
     }
     if (promises.length) {
