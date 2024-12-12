@@ -204,8 +204,6 @@ const createEditorNewsRelation = async (newsId, editorId) => {
 };
 
 const run = async () => {
-  console.log("deleted brands getting removed..");
-  await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
   const READ_COUNT = 1000; // slice length
 
   // connect news and old dbs
@@ -214,6 +212,8 @@ const run = async () => {
 
   const authors = await getAuthors();
 
+  console.log("deleted brands getting removed..");
+  await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
   // congiure parser
   const parser = new edjsParser(parserConf, {
     heading: function (data) {
