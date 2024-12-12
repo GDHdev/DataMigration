@@ -64,11 +64,6 @@ const parserConf = {
     applyAlignment: false,
     // if set to true blockquote element will have text-align css property set
   },
-  customElements: {
-    heading: function (data) {
-      return `<h${data.level}>${data.text}</h${data.level}>`;
-    },
-  },
 };
 
 const capitalizeWords = (str) =>
@@ -216,7 +211,11 @@ const run = async () => {
   const authors = await getAuthors();
 
   // congiure parser
-  const parser = new edjsParser(parserConf);
+  const parser = new edjsParser(parserConf, {
+    heading: function (data) {
+      return `<h${data.level}>${data.text}</h${data.level}>`;
+    },
+  });
 
   // read json datas
   let [oldBrands, oldCategories] = (
@@ -232,12 +231,24 @@ const run = async () => {
   const { rows: newBrands } = await newClient.query("SELECT * FROM brands");
 
   const newBrandMapping = {};
-  for (let oldBrand of [...oldBrands, ...oldCategories]) {
+  const newCategoryMapping = {};
+  for (let oldBrand of oldBrands) {
     const newBrand = newBrands.find((i) => i.slug === oldBrand.mapped);
     if (newBrand) {
       newBrandMapping[oldBrand.id] = newBrand;
     } else if (!newBrand && oldBrand.slug !== "infografik") {
       newBrandMapping[oldBrand.id] = await createNewBrand(oldBrand);
+    } else {
+      console.log("infografik..");
+    }
+  }
+
+  for (let oldCategory of oldCategories) {
+    const newBrand = newBrands.find((i) => i.slug === oldCategory.mapped);
+    if (newBrand) {
+      newCategoryMapping[oldCategory.id] = newBrand;
+    } else if (!newBrand && oldBrand.slug !== "infografik") {
+      newCategoryMapping[oldCategory.id] = await createNewBrand(oldCategory);
     } else {
       console.log("infografik..");
     }
@@ -267,12 +278,18 @@ const run = async () => {
       }
 
       const newDbEditor = relatedAuthor.mapped;
-      if (!newDbEditor || !newBrandMapping[row.brand_id]) {
-        console.log(`brand_id ${row.brand_id} not found`);
+      if (
+        !newDbEditor ||
+        (!newBrandMapping[row.brand_id] && !newCategoryMapping[row.category_id])
+      ) {
+        console.log("editor brand or category does not exist");
         continue;
       }
 
       // create news
+      const brandId = newBrandMapping[row.brand_id]
+        ? newBrandMapping[row.brand_id].id
+        : newCategoryMapping[row.category_id].id;
 
       const newsBody = {
         id,
@@ -280,7 +297,7 @@ const run = async () => {
         title: row.title,
         description: row.message,
         content: parsedContent,
-        brand_id: newBrandMapping[row.brand_id].id,
+        brand_id: brandId,
         seo: row.seo,
         status: "published",
         is_premium: row.premium,
