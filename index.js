@@ -154,6 +154,12 @@ const getAuthors = async () => {
 
 const createNewBrand = async (brand) => {
   console.log(`creating new brand ${brand.mapped}`);
+  const { rows: existed } = await newClient.query(
+    `SELECT * FROM brands WHERE slug='${brand.mapped}'`
+  );
+  if (existed) {
+    return existed;
+  }
   const id = v4();
   const createdAt = new Date().toISOString();
   const query = `INSERT INTO public.brands(id, name, slug, description, icon_url, seo, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
