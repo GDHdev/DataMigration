@@ -64,6 +64,11 @@ const parserConf = {
     applyAlignment: false,
     // if set to true blockquote element will have text-align css property set
   },
+  customElements: {
+    heading: function (data) {
+      return `<h${data.level}>${data.text}</h${data.level}>`;
+    },
+  },
 };
 
 const capitalizeWords = (str) =>
