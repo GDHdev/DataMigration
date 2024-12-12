@@ -170,7 +170,11 @@ const createNewBrand = async (brand) => {
 
   const res = await newClient.query(query, values);
 
-  console.log(res.rows[0]);
+  const { rows: inserted } = await newClient.query(
+    `SELECT * FROM brands WHERE id='${id}'`
+  );
+
+  return inserted[0];
 };
 
 const createNews = async (news) => {
@@ -228,7 +232,7 @@ const run = async () => {
     if (newBrand) {
       newBrandMapping[oldBrand.id] = newBrand;
     } else if (!newBrand && oldBrand.slug !== "infografik") {
-      await createNewBrand(oldBrand);
+      newBrandMapping[oldBrand.id] = await createNewBrand(oldBrand);
     } else {
       console.log("infografik..");
     }
