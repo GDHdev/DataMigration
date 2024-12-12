@@ -253,7 +253,7 @@ const run = async () => {
     const newBrand = newBrands.find((i) => i.slug === oldCategory.mapped);
     if (newBrand) {
       newCategoryMapping[oldCategory.id] = newBrand;
-    } else if (!newBrand && oldBrand.slug !== "infografik") {
+    } else if (!newBrand && oldCategory.slug !== "infografik") {
       newCategoryMapping[oldCategory.id] = await createNewBrand(oldCategory);
     } else {
       console.log("infografik..");
