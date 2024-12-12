@@ -174,6 +174,8 @@ const createNewBrand = async (brand) => {
     `SELECT * FROM brands WHERE id='${id}'`
   );
 
+  console.log("inserted", inserted[0]);
+
   return inserted[0];
 };
 
@@ -202,6 +204,8 @@ const createEditorNewsRelation = async (newsId, editorId) => {
 };
 
 const run = async () => {
+  console.log("deleted brands getting removed..");
+  await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
   const READ_COUNT = 1000; // slice length
 
   // connect news and old dbs
@@ -228,7 +232,9 @@ const run = async () => {
   oldBrands = oldBrands.filter((i) => i.mapped);
   oldCategories = oldCategories.filter((i) => i.mapped);
 
-  const { rows: newBrands } = await newClient.query("SELECT * FROM brands");
+  const { rows: newBrands } = await newClient.query(
+    "SELECT * FROM brands WHERE deleted_at is not null"
+  );
 
   const newBrandMapping = {};
   const newCategoryMapping = {};
