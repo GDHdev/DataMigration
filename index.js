@@ -16,10 +16,10 @@ const oldDbConfigs = {
   user: process.env.OLD_DB_USER,
   password: process.env.OLD_DB_PASSWORD,
   database: process.env.OLD_DB_DATABASE,
-  ssl: {
-    rejectUnauthorized: false,
-    requestCert: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  //   requestCert: false,
+  // },
 };
 const newDbConfigs = {
   host: process.env.NEW_DB_HOST,
@@ -157,8 +157,8 @@ const createNewBrand = async (brand) => {
   const { rows: existed } = await newClient.query(
     `SELECT * FROM brands WHERE slug='${brand.mapped}'`
   );
-  if (existed) {
-    return existed;
+  if (existed.length) {
+    return existed[0];
   }
   const id = v4();
   const createdAt = new Date().toISOString();
@@ -239,7 +239,7 @@ const run = async () => {
   oldCategories = oldCategories.filter((i) => !!i.mapped);
 
   const { rows: newBrands } = await newClient.query(
-    "SELECT * FROM brands WHERE deleted_at is not null"
+    "SELECT * FROM brands WHERE deleted_at is null"
   );
 
   const newBrandMapping = {};
