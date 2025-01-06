@@ -112,7 +112,7 @@ const createEditor = async (editor) => {
   const password = await bcryptjs.hash("123456", 10);
   const values = [
     id,
-    editor.email || editor.user.email,
+    editor.email || editor.user?.email,
     editor.full_name,
     password,
     true,
@@ -125,7 +125,7 @@ const createEditor = async (editor) => {
   await newClient.query(query, values);
 
   const { rows: inserted } = await newClient.query(
-    `SELECT * FROM editors WHERE id='${id}'`
+    `SELECT * FROM editors WHERE id='${id}'`,
   );
 
   return inserted[0];
@@ -133,14 +133,17 @@ const createEditor = async (editor) => {
 
 const getAuthors = async () => {
   const { rows: authors } = await client.query(
-    `SELECT author.* , to_json(u) "user" FROM author LEFT JOIN "user" as u ON author.user_id = u.id`
+    `SELECT author.* , to_json(u) "user" FROM author LEFT JOIN "user" as u ON author.user_id = u.id`,
   );
 
   const { rows: editors } = await newClient.query(`SELECT * from editors`);
 
   for (const author of authors) {
     const relatedEditor = editors.find(
-      (i) => i.email === author.email || i.email === author.user?.email
+      (i) =>
+        i.email === author.email ||
+        i.email === author.user?.email ||
+        i.fullname === author.full_name,
     );
     if (relatedEditor) {
       author.mapped = relatedEditor;
@@ -155,7 +158,7 @@ const getAuthors = async () => {
 const createNewBrand = async (brand) => {
   console.log(`creating new brand ${brand.mapped}`);
   const { rows: existed } = await newClient.query(
-    `SELECT * FROM brands WHERE slug='${brand.mapped}'`
+    `SELECT * FROM brands WHERE slug='${brand.mapped}'`,
   );
   if (existed.length) {
     return existed[0];
@@ -177,7 +180,7 @@ const createNewBrand = async (brand) => {
   const res = await newClient.query(query, values);
 
   const { rows: inserted } = await newClient.query(
-    `SELECT * FROM brands WHERE id='${id}'`
+    `SELECT * FROM brands WHERE id='${id}'`,
   );
 
   console.log("inserted", inserted[0]);
@@ -188,9 +191,18 @@ const createNewBrand = async (brand) => {
 const createNews = async (news) => {
   // console.log(`creating news ${news.id}`);
   const query = `INSERT INTO news(${Object.keys(news).join(
-    ","
+    ",",
   )}) VALUES (${Object.keys(news).map((item, index) => `$${index + 1}`)})`;
   const values = Object.values(news);
+
+  const exist = await newClient.query(
+    `SELECT * FROM news WHERE import_id='${news.import_id}'`,
+  );
+
+  if (exist.rows[0]) {
+    console.log("exist", exist.rows[0].id);
+    return false;
+  }
 
   const res = await newClient.query(query, values);
 
@@ -239,7 +251,7 @@ const run = async () => {
   oldCategories = oldCategories.filter((i) => !!i.mapped);
 
   const { rows: newBrands } = await newClient.query(
-    "SELECT * FROM brands WHERE deleted_at is null"
+    "SELECT * FROM brands WHERE deleted_at is null",
   );
 
   const newBrandMapping = {};
@@ -268,8 +280,8 @@ const run = async () => {
 
   const stories = await client.query(
     new Cursor(
-      "SELECT * FROM story where content_data is not null and status='published' and author_id is not null"
-    )
+      "SELECT * FROM story where content_data is not null and status='published' and author_id is not null",
+    ),
   );
 
   const process = async () => {
@@ -327,7 +339,11 @@ const run = async () => {
           };
           try {
             const creationProcess = async () => {
-              await createNews(newsBody);
+              const exist = await createNews(newsBody);
+
+              if (!exist) {
+                return;
+              }
 
               // create news <> editor relations
               await createEditorNewsRelation(id, newDbEditor.id);
