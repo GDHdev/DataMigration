@@ -27,10 +27,10 @@ const newDbConfigs = {
   user: process.env.NEW_DB_USER,
   password: process.env.NEW_DB_PASSWORD,
   database: process.env.NEW_DB_DATABASE,
-  ssl: {
-    rejectUnauthorized: false,
-    requestCert: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  //   requestCert: false,
+  // },
 };
 
 const client = new Client(oldDbConfigs);
@@ -155,6 +155,39 @@ const getAuthors = async () => {
   return authors;
 };
 
+const createWriter = async (writer) => {
+  console.log("creating new writer..");
+  const id = v4();
+  const query = `INSERT INTO writers(id, email, fullname, password, is_active, slug, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
+  const password = await bcryptjs.hash("123456", 10);
+  const values = [
+    id,
+    writer.email || writer.user?.email,
+    writer.fullname,
+    password,
+    true,
+    writer.fullname.replace(" ", "-").toLocaleLowerCase("tr-TR") + "-" + id,
+    new Date().toISOString(),
+    new Date().toISOString(),
+  ];
+
+  await newClient.query(query, values);
+
+  const { rows: inserted } = await newClient.query(
+    `SELECT * FROM writers WHERE id='${id}'`,
+  );
+
+  console.log(inserted);
+
+  return inserted[0];
+};
+
+const getWriters = async () => {
+  const { rows: writers } = await newClient.query(`SELECT * from writers`);
+
+  return writers;
+};
+
 const createNewBrand = async (brand) => {
   console.log(`creating new brand ${brand.mapped}`);
   const { rows: existed } = await newClient.query(
@@ -200,7 +233,30 @@ const createNews = async (news) => {
   );
 
   if (exist.rows[0]) {
-    console.log("exist", exist.rows[0].id);
+    //console.log("exist", exist.rows[0].id);
+    return false;
+  }
+
+  const res = await newClient.query(query, values);
+
+  return res.rows[0];
+};
+
+const createColumn = async (column) => {
+  // console.log(`creating column ${column.id}`);
+  const query = `INSERT INTO columns(${Object.keys(column)
+    .map((c) => `"${c}"`)
+    .join(
+      ",",
+    )}) VALUES (${Object.keys(column).map((item, index) => `$${index + 1}`)})`;
+  const values = Object.values(column);
+
+  const exist = await newClient.query(
+    `SELECT * FROM columns WHERE import_id='${column.import_id}'`,
+  );
+
+  if (exist.rows[0]) {
+    //console.log("exist", exist.rows[0].id);
     return false;
   }
 
@@ -229,6 +285,7 @@ const run = async () => {
   await newClient.connect();
 
   const authors = await getAuthors();
+  const writers = await getWriters();
 
   console.log("deleted brands getting removed..");
   // await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
@@ -310,17 +367,17 @@ const run = async () => {
         continue;
       } else {
         // create news
-        const brandId = newBrandMapping[row.brand_id]
-          ? newBrandMapping[row.brand_id].id
-          : newCategoryMapping[row.category_id].id;
-        if (brandId) {
+        const brand = newBrandMapping[row.brand_id]
+          ? newBrandMapping[row.brand_id]
+          : newCategoryMapping[row.category_id];
+        if (brand) {
           const newsBody = {
             id,
             slug: `${row.slug}-${id}`,
             title: row.title,
             description: row.message,
             content: parsedContent,
-            brand_id: brandId,
+            brand_id: brand.id,
             seo: row.seo,
             status: "published",
             is_premium: row.premium,
@@ -337,16 +394,72 @@ const run = async () => {
             created_at: row.created_at,
             updated_at: row.updated_at,
           };
-          try {
-            const creationProcess = async () => {
-              const exist = await createNews(newsBody);
 
-              if (!exist) {
-                return;
+          let columnBody;
+
+          const columnEditors = [
+            "Taceddin Kutay",
+            "Cüneyt Polat",
+            "Yusuf Alabarda",
+          ];
+
+          if (brand.slug === "yakin-plan") {
+            if (columnEditors.includes(newDbEditor.fullname)) {
+              let writerId;
+
+              const writer = writers.find(
+                (wr) => wr.fullname === newDbEditor.fullname,
+              );
+
+              writerId = writer?.id;
+
+              if (!writerId) {
+                const newWriter = await createWriter(newDbEditor);
+
+                writers.push(newWriter);
+
+                writerId = newWriter.id;
               }
 
-              // create news <> editor relations
-              await createEditorNewsRelation(id, newDbEditor.id);
+              columnBody = {
+                id,
+                title: row.title,
+                description: row.message,
+                content: parsedContent,
+                slug: `${row.slug}-${id}`,
+                brand_id: brand.id,
+                seo: row.seo,
+                status: "published",
+                is_active: true,
+                thumbnails: {
+                  original: row.images[0]?.url,
+                  "3x2": row.images[0]?.url,
+                  "4x3": row.images[0]?.url,
+                  "9x16": row.images[0]?.url,
+                },
+                number_of_views: row.stat_views,
+                import_id: row.id,
+                writer_id: writerId,
+
+                createdAt: row.created_at,
+                updatedAt: row.updated_at,
+              };
+            }
+          }
+
+          try {
+            const creationProcess = async () => {
+              if (columnBody) {
+                await createColumn(columnBody);
+              } else {
+                const exist = await createNews(newsBody);
+
+                // create news <> editor relations
+
+                if (exist) {
+                  await createEditorNewsRelation(id, newDbEditor.id);
+                }
+              }
             };
 
             promises.push(creationProcess());
