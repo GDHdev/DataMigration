@@ -1,0 +1,1601 @@
+[
+  {
+    "id": 11,
+    "full_name": "Fikri Özgür",
+    "picture": null,
+    "email": "fikri.ozgur@gdh.digital",
+    "updated_at": "2023-03-27T03:39:58.444Z",
+    "created_at": "2022-09-17T06:43:10.956Z",
+    "featured": 0,
+    "slug": "fikri-ozgur",
+    "description": null,
+    "seo": {
+      "title": "Fikri Özgür",
+      "description": "gdh haber - Fikri Özgür"
+    },
+    "user_id": 933940,
+    "user": null
+  },
+  {
+    "id": 42,
+    "full_name": "Seyyid Can Kırca",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-03-25T08:43:11.510Z",
+    "created_at": "2023-03-25T08:20:37.421Z",
+    "featured": 20,
+    "slug": "seyyidcankirca",
+    "description": null,
+    "seo": {
+      "title": "Seyyid Can Kırca",
+      "description": "Seyyid Can Kırca - gdh haber"
+    },
+    "user_id": 2215681,
+    "user": null
+  },
+  {
+    "id": 1,
+    "full_name": "Onur Güleç",
+    "picture": {
+      "key": "b2da6716-3a30-470e-fc94-b66851c3bd00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b2da6716-3a30-470e-fc94-b66851c3bd00/public",
+      "width": 893,
+      "height": 502
+    },
+    "email": "onur.gulec@gdh.digital",
+    "updated_at": "2023-08-24T06:22:53.324Z",
+    "created_at": "2022-09-14T10:11:17.965Z",
+    "featured": 1,
+    "slug": "onur-gulec",
+    "description": "",
+    "seo": {
+      "title": "Onur Güleç",
+      "description": "gdh haber - Onur Güleç"
+    },
+    "user_id": 8,
+    "user": null
+  },
+  {
+    "id": 44,
+    "full_name": "Test Editor 2",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-03-27T11:32:07.408Z",
+    "created_at": "2023-03-27T11:32:07.387Z",
+    "featured": null,
+    "slug": "test-editor-2",
+    "description": null,
+    "seo": {
+      "title": "test user ",
+      "description": "seo test"
+    },
+    "user_id": 2253141,
+    "user": null
+  },
+  {
+    "id": 32,
+    "full_name": "Mehmet Dilbaz",
+    "picture": {
+      "key": "user/x/572fc98c-406a-4054-bf9d-3759e3d5e68b",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/572fc98c-406a-4054-bf9d-3759e3d5e68b",
+      "width": 768,
+      "height": 768
+    },
+    "email": "mehmet.dilbaz@gdh.digital",
+    "updated_at": "2023-06-20T09:22:39.047Z",
+    "created_at": "2022-10-10T11:03:39.939Z",
+    "featured": 0,
+    "slug": "mehmet-dilbaz",
+    "description": "gdhtarih Koordinatörü",
+    "seo": {
+      "title": "Mehmet Dilbaz",
+      "description": "gdhtarih - editör"
+    },
+    "user_id": 1646,
+    "user": null
+  },
+  {
+    "id": 5,
+    "full_name": "Mehmet Kancı",
+    "picture": {
+      "key": "8b2b487b-d1e9-41fd-a16f-d8e93127d400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/8b2b487b-d1e9-41fd-a16f-d8e93127d400/public",
+      "width": 853,
+      "height": 917
+    },
+    "email": "mehmetkanci@gdh.digital ",
+    "updated_at": "2024-02-12T04:14:59.332Z",
+    "created_at": "2022-09-17T06:40:33.075Z",
+    "featured": 5,
+    "slug": "mehmet-kanci",
+    "description": null,
+    "seo": {
+      "title": "Mehmet Kancı",
+      "description": "gdh haber - Mehmet Kancı"
+    },
+    "user_id": 339619,
+    "user": null
+  },
+  {
+    "id": 3,
+    "full_name": "Göknur Çeliktaş",
+    "picture": {
+      "key": "user/x/51f61e02-faba-46da-9318-e75cc35a035b",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/51f61e02-faba-46da-9318-e75cc35a035b",
+      "width": 960,
+      "height": 960
+    },
+    "email": "goknur.celiktas@gdh.digital",
+    "updated_at": "2024-06-04T11:15:53.629Z",
+    "created_at": "2022-09-14T10:13:40.261Z",
+    "featured": null,
+    "slug": "goknur-celiktas",
+    "description": null,
+    "seo": {
+      "title": "Göknur Çeliktaş",
+      "description": "gdh haber - Göknur Çeliktaş"
+    },
+    "user_id": 6,
+    "user": null
+  },
+  {
+    "id": 2,
+    "full_name": "Alper Vural",
+    "picture": {
+      "key": "1c635a33-1200-45ab-66a0-07ded2f34a00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/1c635a33-1200-45ab-66a0-07ded2f34a00/public",
+      "width": 2160,
+      "height": 2160
+    },
+    "email": "alper.vural@gdh.digital",
+    "updated_at": "2024-07-09T07:31:30.967Z",
+    "created_at": "2022-09-14T10:12:36.322Z",
+    "featured": 2,
+    "slug": "alper-vural",
+    "description": "",
+    "seo": {
+      "title": "Alper Vural",
+      "description": "gdh haber - Alper Vural"
+    },
+    "user_id": 7,
+    "user": null
+  },
+  {
+    "id": 19,
+    "full_name": "Emrullah Acar",
+    "picture": null,
+    "email": "ea_workrelated@hotmail.com",
+    "updated_at": "2023-01-02T04:50:54.778Z",
+    "created_at": "2022-09-26T11:00:07.766Z",
+    "featured": null,
+    "slug": "emrullah-acar",
+    "description": null,
+    "seo": {
+      "title": "Emrullah Acar",
+      "description": "gdh haber - Emrullah Acar"
+    },
+    "user_id": 1629,
+    "user": null
+  },
+  {
+    "id": 25,
+    "full_name": "Tahran Oruçoğlu",
+    "picture": {
+      "key": "115021ff-fea3-4c44-5748-6e191e4dea00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/115021ff-fea3-4c44-5748-6e191e4dea00/public",
+      "width": 960,
+      "height": 1280
+    },
+    "email": "tehran.orucoglu@gmail.com",
+    "updated_at": "2023-01-04T02:46:09.297Z",
+    "created_at": "2022-09-28T05:07:44.734Z",
+    "featured": 40,
+    "slug": "tehran-orucoglu",
+    "description": "",
+    "seo": {
+      "title": "Tehran Orucoglu ",
+      "description": "gdh haber - Tehran Orucoglu "
+    },
+    "user_id": 1658,
+    "user": null
+  },
+  {
+    "id": 8,
+    "full_name": "Adem Kılıç",
+    "picture": {
+      "key": "user/x/5e4a4195-4cb1-4a9c-a345-efd1d4df1b5a",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/5e4a4195-4cb1-4a9c-a345-efd1d4df1b5a",
+      "width": 400,
+      "height": 400
+    },
+    "email": "ademk@windowslive.com ",
+    "updated_at": "2022-11-01T15:27:19.029Z",
+    "created_at": "2022-09-17T06:42:01.779Z",
+    "featured": 15,
+    "slug": "adem-kilic",
+    "description": "",
+    "seo": {
+      "title": "Adem Kılıç",
+      "description": "gdh haber - Adem Kılıç"
+    },
+    "user_id": 1659,
+    "user": null
+  },
+  {
+    "id": 34,
+    "full_name": "Cüneyt Polat",
+    "picture": {
+      "key": "user/x/2d7ed505-3d66-4216-a2f9-def6b584e56f",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/2d7ed505-3d66-4216-a2f9-def6b584e56f",
+      "width": 448,
+      "height": 448
+    },
+    "email": "cuneyt@gdh.digital",
+    "updated_at": "2023-01-04T03:50:23.301Z",
+    "created_at": "2022-10-17T05:20:54.591Z",
+    "featured": 2,
+    "slug": "cuneyt-polat",
+    "description": null,
+    "seo": {
+      "title": "Cüneyt Polat",
+      "description": "gdh digital - Cüneyt Polat"
+    },
+    "user_id": 3,
+    "user": null
+  },
+  {
+    "id": 18,
+    "full_name": "Yasin Tekşen",
+    "picture": {
+      "key": "user/x/a377f6e1-e70d-4d7d-b946-32b3efeec10d",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/a377f6e1-e70d-4d7d-b946-32b3efeec10d",
+      "width": 1124,
+      "height": 936
+    },
+    "email": "yasinteksen@gmail.com",
+    "updated_at": "2022-10-04T11:28:19.009Z",
+    "created_at": "2022-09-17T06:51:24.712Z",
+    "featured": 14,
+    "slug": "yasin-teksen",
+    "description": null,
+    "seo": {
+      "title": "Yasin Tekşen",
+      "description": "gdh haber - Yasin Tekşen"
+    },
+    "user_id": 1328,
+    "user": null
+  },
+  {
+    "id": 33,
+    "full_name": "Ömer Özkizilcik",
+    "picture": {
+      "key": "tmp/63c3f8b8-df70-4f59-a5fc-1b663a0a8b63",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/tmp/63c3f8b8-df70-4f59-a5fc-1b663a0a8b63",
+      "width": 400,
+      "height": 400
+    },
+    "email": "omer.ozkizilcik@gdh.digital",
+    "updated_at": "2022-10-17T05:15:22.957Z",
+    "created_at": "2022-10-17T05:13:25.034Z",
+    "featured": 20,
+    "slug": "omer-ozkizilcik",
+    "description": null,
+    "seo": {
+      "title": "Ömer Özkizilcik",
+      "description": "gdh digital - Ömer Özkizilcik"
+    },
+    "user_id": 1807,
+    "user": null
+  },
+  {
+    "id": 6,
+    "full_name": "Gönül Şamilkızı",
+    "picture": {
+      "key": "tmp/30e8e4c0-be5e-4514-ae86-dbddec4d9ee9",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/tmp/30e8e4c0-be5e-4514-ae86-dbddec4d9ee9",
+      "width": 733,
+      "height": 733
+    },
+    "email": "gonulsamilkizi@gdh.digital",
+    "updated_at": "2022-09-29T05:43:30.163Z",
+    "created_at": "2022-09-17T06:41:30.357Z",
+    "featured": 6,
+    "slug": "gonul-samilkizi",
+    "description": null,
+    "seo": {
+      "title": "Gönül Şamilkızı",
+      "description": "gdh haber - Gönül Şamilkızı"
+    },
+    "user_id": null,
+    "user": null
+  },
+  {
+    "id": 16,
+    "full_name": "Kamer Kurunç",
+    "picture": {
+      "key": "user/x/d2d0797f-0ec9-4625-8115-db26e1346f7c",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/d2d0797f-0ec9-4625-8115-db26e1346f7c",
+      "width": 1242,
+      "height": 2208
+    },
+    "email": "kamerkurunc@gdh.digital ",
+    "updated_at": "2022-09-20T10:40:59.674Z",
+    "created_at": "2022-09-17T06:48:49.069Z",
+    "featured": 12,
+    "slug": "kamer-kurunc",
+    "description": null,
+    "seo": {
+      "title": "Kamer Kurunç",
+      "description": "gdh haber - Kamer Kurunc"
+    },
+    "user_id": 916,
+    "user": null
+  },
+  {
+    "id": 14,
+    "full_name": "Taner Timur",
+    "picture": null,
+    "email": "tanertimur@gdh.digital",
+    "updated_at": "2023-01-05T05:49:22.642Z",
+    "created_at": "2022-09-17T06:46:32.452Z",
+    "featured": 10,
+    "slug": "taner-timur",
+    "description": null,
+    "seo": {
+      "title": "Taner Timur",
+      "description": "gdh haber - Taner Timur"
+    },
+    "user_id": 1412,
+    "user": null
+  },
+  {
+    "id": 28,
+    "full_name": "Doğu Han Dursun",
+    "picture": {
+      "key": "tmp/1788697c-4105-4729-8cfd-caaed92002be",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/tmp/1788697c-4105-4729-8cfd-caaed92002be",
+      "width": 1076,
+      "height": 1071
+    },
+    "email": "doguhandursun@gdh.digital",
+    "updated_at": "2022-10-21T05:40:01.370Z",
+    "created_at": "2022-09-29T03:50:20.285Z",
+    "featured": 28,
+    "slug": "dogu-han-dursun",
+    "description": null,
+    "seo": {
+      "title": "Doğu Han Dursun",
+      "description": "gdh haber - Doğu Han Dursun"
+    },
+    "user_id": null,
+    "user": null
+  },
+  {
+    "id": 37,
+    "full_name": "Fatmanur Parlak",
+    "picture": {
+      "key": "9da2d1d9-1c55-4925-382d-411a10aa6800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/9da2d1d9-1c55-4925-382d-411a10aa6800/public",
+      "width": 500,
+      "height": 500
+    },
+    "email": "fatmanurparlak663@gmail.com",
+    "updated_at": "2022-12-16T03:11:18.471Z",
+    "created_at": "2022-11-13T06:14:14.870Z",
+    "featured": 30,
+    "slug": "fatmanur-parlak",
+    "description": null,
+    "seo": {
+      "title": "Fatmanur Parlak",
+      "description": "gdh digital - Fatmanur Parlak"
+    },
+    "user_id": 128583,
+    "user": null
+  },
+  {
+    "id": 4,
+    "full_name": "Ömer Faruk",
+    "picture": null,
+    "email": "omerfarukmadanoglu@gmail.com",
+    "updated_at": "2022-12-16T04:35:04.840Z",
+    "created_at": "2022-09-14T10:15:17.136Z",
+    "featured": 4,
+    "slug": "omer-faruk-madanoglu",
+    "description": null,
+    "seo": {
+      "title": "Ömer Faruk Madanoğlu",
+      "description": "gdh haber - Ömer Faruk Madanoğlu"
+    },
+    "user_id": 1647,
+    "user": null
+  },
+  {
+    "id": 13,
+    "full_name": "Kerim",
+    "picture": {
+      "key": "85aae18b-d5af-4aee-3c40-fde4b1b5b000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/85aae18b-d5af-4aee-3c40-fde4b1b5b000/public",
+      "width": 1018,
+      "height": 1280
+    },
+    "email": "kerim.sakarcan@gmail.com",
+    "updated_at": "2023-01-04T05:55:25.193Z",
+    "created_at": "2022-09-17T06:44:17.085Z",
+    "featured": 9,
+    "slug": "kerim-sakarcan",
+    "description": "",
+    "seo": {
+      "title": "Kerim Şakarcan",
+      "description": "gdh haber - Kerim Şakarcan"
+    },
+    "user_id": 1403,
+    "user": null
+  },
+  {
+    "id": 36,
+    "full_name": "Elif Jora Önder",
+    "picture": {
+      "key": "user/x/4bcc38ce-b485-4ce4-aa8c-78ad034ef50d",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/4bcc38ce-b485-4ce4-aa8c-78ad034ef50d",
+      "width": 768,
+      "height": 1024
+    },
+    "email": "elifjoraonder@yahoo.com",
+    "updated_at": "2022-11-25T09:23:25.721Z",
+    "created_at": "2022-11-05T13:00:06.910Z",
+    "featured": 20,
+    "slug": "elif-jora-onder",
+    "description": null,
+    "seo": {
+      "title": "Elif Jora Önder",
+      "description": "Elif Jora Önder"
+    },
+    "user_id": 29264,
+    "user": null
+  },
+  {
+    "id": 38,
+    "full_name": "Hüseyin Korkmaz",
+    "picture": {
+      "key": "8e4247a5-06b1-44d4-93dd-724d82929800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/8e4247a5-06b1-44d4-93dd-724d82929800/public",
+      "width": 400,
+      "height": 400
+    },
+    "email": "huseyin.korkmaz@gdh.digital",
+    "updated_at": "2022-12-02T02:51:18.811Z",
+    "created_at": "2022-12-02T02:50:43.498Z",
+    "featured": 0,
+    "slug": "huseyinkorkmaz",
+    "description": "Dr. Bağımsız araştırmacı. 2021 yılında “Küresel Organik Kriz ve Yeni Soğuk Savaş: ABD ve Çin’in Sınırsız Stratejik Rekabeti” başlıklı bir kitabı yayınlanan yazarın çalışma alanları arasında Küresel hegemonya, ABD-Çin ilişkileri ve Çin’in Dış Politikası bulunuyor.",
+    "seo": {
+      "title": "Hüseyin Korkmaz",
+      "description": "Dr. Bağımsız araştırmacı. 2021 yılında “Küresel Organik Kriz ve Yeni Soğuk Savaş: ABD ve Çin’in Sınırsız Stratejik Rekabeti” başlıklı bir kitabı yayınlanan yazarın çalışma alanları arasında Küresel hegemonya, ABD-Çin ilişkileri ve Çin’in Dış Politikası bulunuyor."
+    },
+    "user_id": 385245,
+    "user": null
+  },
+  {
+    "id": 50,
+    "full_name": "Aleyna Dilan Tuncay",
+    "picture": {
+      "key": "325809f8-be97-4646-0fa0-8a05f0d32f00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/325809f8-be97-4646-0fa0-8a05f0d32f00/public",
+      "width": 1080,
+      "height": 1080
+    },
+    "email": "aleynatuncay97@gmail.com",
+    "updated_at": "2023-05-31T08:17:35.078Z",
+    "created_at": "2023-05-21T09:03:13.584Z",
+    "featured": 45,
+    "slug": "dilantuncay",
+    "description": "gdh teknoloji",
+    "seo": {
+      "title": "Aleyna Dilan Tuncay",
+      "description": "gdh teknoloji - dilan tuncay"
+    },
+    "user_id": 3224141,
+    "user": null
+  },
+  {
+    "id": 40,
+    "full_name": "Ergin Saygun",
+    "picture": {
+      "key": "4767898e-21ff-4cb3-a6bf-2f9c25ba2600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/4767898e-21ff-4cb3-a6bf-2f9c25ba2600/public",
+      "width": 1728,
+      "height": 1728
+    },
+    "email": "ergin.saygun@gdh.digital",
+    "updated_at": "2023-01-30T12:06:35.875Z",
+    "created_at": "2023-01-30T11:28:18.794Z",
+    "featured": 10,
+    "slug": "ergin-saygun",
+    "description": null,
+    "seo": {
+      "title": "Ergin Saygun",
+      "description": "gdh.digital Ergin Saygun"
+    },
+    "user_id": 1359422,
+    "user": null
+  },
+  {
+    "id": 39,
+    "full_name": "Alperen Aktaş",
+    "picture": {
+      "key": "c01b9aee-5e5c-4ddc-5295-54c53edac900",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/c01b9aee-5e5c-4ddc-5295-54c53edac900/public",
+      "width": 750,
+      "height": 933
+    },
+    "email": "alprnakts@gmail.com",
+    "updated_at": "2022-12-06T06:06:44.727Z",
+    "created_at": "2022-12-06T04:12:14.470Z",
+    "featured": 15,
+    "slug": "alperenaktas",
+    "description": "Alperen Aktaş",
+    "seo": {
+      "title": "Alperen Aktaş",
+      "description": "alperenaktas"
+    },
+    "user_id": 436433,
+    "user": null
+  },
+  {
+    "id": 57,
+    "full_name": "Selman Fargali",
+    "picture": {
+      "key": "b60f6902-e90f-45a0-cce1-5ec86f981500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b60f6902-e90f-45a0-cce1-5ec86f981500/public",
+      "width": 1502,
+      "height": 1468
+    },
+    "email": "",
+    "updated_at": "2023-10-04T03:42:59.584Z",
+    "created_at": "2023-07-03T10:37:42.351Z",
+    "featured": 0,
+    "slug": "selmanfargali",
+    "description": "",
+    "seo": {
+      "title": "Selman Fargali",
+      "description": "Selman Fargali"
+    },
+    "user_id": 4003621,
+    "user": null
+  },
+  {
+    "id": 15,
+    "full_name": "Muhammed Deniz",
+    "picture": {
+      "key": "97b059b7-0c49-4f17-9fe6-9035bebe4c00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/97b059b7-0c49-4f17-9fe6-9035bebe4c00/public",
+      "width": 690,
+      "height": 692
+    },
+    "email": "muhammeddeniz@gdh.digital ",
+    "updated_at": "2023-02-22T15:29:28.710Z",
+    "created_at": "2022-09-17T06:47:54.286Z",
+    "featured": 11,
+    "slug": "muhammed-deniz",
+    "description": "",
+    "seo": {
+      "title": "Muhammed Deniz",
+      "description": "gdh haber - Muhammed Deniz"
+    },
+    "user_id": 1512,
+    "user": null
+  },
+  {
+    "id": 41,
+    "full_name": "ibrahim Güler",
+    "picture": {
+      "key": "41074865-3ef4-4086-09b1-f91076a6f800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/41074865-3ef4-4086-09b1-f91076a6f800/public",
+      "width": 2917,
+      "height": 2415
+    },
+    "email": "ibbrahimguler@icloud.com",
+    "updated_at": "2023-02-26T06:42:15.048Z",
+    "created_at": "2023-02-26T06:42:15.030Z",
+    "featured": 15,
+    "slug": "ibrahim",
+    "description": "İbrahim Güler",
+    "seo": {
+      "title": "İbrahim Güler",
+      "description": "İbrahim Güler"
+    },
+    "user_id": 1374351,
+    "user": null
+  },
+  {
+    "id": 43,
+    "full_name": "gdh",
+    "picture": {
+      "key": "309728dd-259e-4bde-edf4-e3751528d500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/309728dd-259e-4bde-edf4-e3751528d500/public",
+      "width": 1080,
+      "height": 1080
+    },
+    "email": "haber@gdh.digital",
+    "updated_at": "2023-03-27T09:38:35.771Z",
+    "created_at": "2023-03-27T09:36:55.772Z",
+    "featured": 1,
+    "slug": "gdh",
+    "description": null,
+    "seo": {
+      "title": "gdh",
+      "description": "gdh"
+    },
+    "user_id": 2251861,
+    "user": null
+  },
+  {
+    "id": 45,
+    "full_name": "Fatih Şemsettin Işık",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-03-28T07:40:37.580Z",
+    "created_at": "2023-03-28T07:40:37.564Z",
+    "featured": 0,
+    "slug": "fatihsemsettinisik",
+    "description": null,
+    "seo": {
+      "title": "Fatih Şemsettin Işık",
+      "description": "Fatih Şemsettin Işık - gdh haber"
+    },
+    "user_id": 2260312,
+    "user": null
+  },
+  {
+    "id": 49,
+    "full_name": "Göktuğ Sevgil",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-05-10T08:13:05.019Z",
+    "created_at": "2023-05-10T08:13:05.013Z",
+    "featured": null,
+    "slug": "goktug-sevgil",
+    "description": null,
+    "seo": {
+      "title": "Göktuğ Sevgil",
+      "description": "Goktug"
+    },
+    "user_id": 3037895,
+    "user": null
+  },
+  {
+    "id": 48,
+    "full_name": "Fatimatüzzehra Maslak",
+    "picture": {
+      "key": "f9f97227-6f6a-4790-061d-a4d4c4ffd200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/f9f97227-6f6a-4790-061d-a4d4c4ffd200/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "email": null,
+    "updated_at": "2023-05-20T09:00:19.212Z",
+    "created_at": "2023-05-03T05:35:08.883Z",
+    "featured": null,
+    "slug": "fatimatuzzehramaslak",
+    "description": "Fatimatüzzehra Maslak - gdh haber",
+    "seo": {
+      "title": "Fatimatüzzehra Maslak",
+      "description": "Fatimatüzzehra Maslak - gdh haber"
+    },
+    "user_id": 2348584,
+    "user": null
+  },
+  {
+    "id": 29,
+    "full_name": "Nurdan Akbaba",
+    "picture": {
+      "key": "user/x/ab45ce9b-87f5-494a-892d-2fb5047f19e6",
+      "url": "https://gdh-data.s3.eu-central-1.amazonaws.com/user/x/ab45ce9b-87f5-494a-892d-2fb5047f19e6",
+      "width": 526,
+      "height": 434
+    },
+    "email": null,
+    "updated_at": "2023-06-07T07:39:37.505Z",
+    "created_at": "2022-10-05T09:38:53.160Z",
+    "featured": 15,
+    "slug": "nurdan-akbaba",
+    "description": null,
+    "seo": {
+      "title": "Nurdan Akbaba",
+      "description": "gdh digital - Nurdan Akbaba"
+    },
+    "user_id": 1710,
+    "user": null
+  },
+  {
+    "id": 47,
+    "full_name": "Yali Youzbashi",
+    "picture": null,
+    "email": "yaleiau18@gmail.com",
+    "updated_at": "2023-04-13T08:02:29.884Z",
+    "created_at": "2023-04-13T08:02:29.878Z",
+    "featured": 0,
+    "slug": "yalei-youzbashi",
+    "description": null,
+    "seo": {
+      "title": "Yalei Youzbashi",
+      "description": "Yali Youzbashi - gdh"
+    },
+    "user_id": 1428420,
+    "user": null
+  },
+  {
+    "id": 51,
+    "full_name": "Muhammet Mustafa Aydoğan",
+    "picture": {
+      "key": "d823ead8-cd11-4cd7-273a-352d64db1d00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/d823ead8-cd11-4cd7-273a-352d64db1d00/public",
+      "width": 2020,
+      "height": 2100
+    },
+    "email": "",
+    "updated_at": "2023-08-18T05:13:17.824Z",
+    "created_at": "2023-05-24T12:10:42.499Z",
+    "featured": 26,
+    "slug": "mustafaaydogan",
+    "description": "Muhammet Mustafa Aydoğan-gdh haber",
+    "seo": {
+      "title": "Muhammet Mustafa Aydoğan",
+      "description": "Muhammet Mustafa Aydoğan-gdh haber"
+    },
+    "user_id": 3284850,
+    "user": null
+  },
+  {
+    "id": 52,
+    "full_name": "Samet Tınas",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-06-20T09:13:41.808Z",
+    "created_at": "2023-06-20T09:09:56.517Z",
+    "featured": 0,
+    "slug": "samettinas",
+    "description": "1988’de Üsküdar’da doğdu. Lisans eğitimini Maltepe Üniversitesi “Uluslararası İlişkiler ve AB” bölümünde bitirdikten sonra Marmara Üniversitesi “Yeni Çağ Tarihi”nde yüksek lisansa başladı. Rıdvanpaşazâde Abdullah Çelebi’nin “Târih-i Mısır” isimli yazma eserini edisyon-kritik yaparak yüksek lisansını tamamladıktan sonra aynı üniversitenin aynı bölümünde “Köprülü Mehmed Paşa’nın Hayatı ve Osmanlı Devlet Siyasetindeki Rolü” isimli doktora çalışmasını yürütmektedir. Evli ve iki çocuk babasıdır.",
+    "seo": {
+      "title": "Samet Tınas",
+      "description": "samet tınas-gdh tarih"
+    },
+    "user_id": 3754965,
+    "user": null
+  },
+  {
+    "id": 58,
+    "full_name": "Yağmur Bayram",
+    "picture": {
+      "key": "eebaaedb-c6e5-4c86-33d5-da6593d04c00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/eebaaedb-c6e5-4c86-33d5-da6593d04c00/public",
+      "width": 739,
+      "height": 1602
+    },
+    "email": null,
+    "updated_at": "2023-07-25T04:35:27.713Z",
+    "created_at": "2023-07-19T10:01:48.811Z",
+    "featured": 0,
+    "slug": "yagmurbayram",
+    "description": null,
+    "seo": {
+      "title": "Yağmur Bayram",
+      "description": "Yağmur Bayram - gda tarih"
+    },
+    "user_id": 4162527,
+    "user": null
+  },
+  {
+    "id": 59,
+    "full_name": "Mahmut Aydın",
+    "picture": {
+      "key": "af90170b-d807-461b-7ea7-c28f29ffa500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/af90170b-d807-461b-7ea7-c28f29ffa500/public",
+      "width": 893,
+      "height": 1024
+    },
+    "email": null,
+    "updated_at": "2023-07-24T04:05:34.100Z",
+    "created_at": "2023-07-24T03:43:44.539Z",
+    "featured": 34,
+    "slug": "mahmutaydin",
+    "description": null,
+    "seo": {
+      "title": "Mahmut Aydın",
+      "description": "Mahmut Aydın gdh haber"
+    },
+    "user_id": 4382815,
+    "user": null
+  },
+  {
+    "id": 68,
+    "full_name": "Berkay Oflaz",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-11-12T11:47:18.362Z",
+    "created_at": "2023-11-12T11:47:18.351Z",
+    "featured": null,
+    "slug": "berkay-oflaz",
+    "description": null,
+    "seo": {
+      "title": "Berkay Oflaz",
+      "description": ""
+    },
+    "user_id": 6461456,
+    "user": null
+  },
+  {
+    "id": 61,
+    "full_name": "gdh tarih",
+    "picture": null,
+    "email": null,
+    "updated_at": "2024-02-12T04:16:01.306Z",
+    "created_at": "2023-08-28T07:30:37.705Z",
+    "featured": 0,
+    "slug": "gdhtarih",
+    "description": null,
+    "seo": {
+      "title": "gdh tarih",
+      "description": "gdh tarih"
+    },
+    "user_id": 4995116,
+    "user": null
+  },
+  {
+    "id": 54,
+    "full_name": "Samet Altıntaş",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-06-20T09:18:02.574Z",
+    "created_at": "2023-06-20T09:18:02.555Z",
+    "featured": 0,
+    "slug": "sametaltintas",
+    "description": "12 Ocak 1986 tarihinde Almanya’da doğdu. İlkokulu Yalova’da, ortaokul ve liseyi Bursa’da okudu. 2009 yılında Marmara Üniversitesi Tarih Bölümü’nden mezun oldu. 2012’de Bursa Osmangazi Belediyesi’nin düzenlediği\nAhmet Hamdi Tanpınar makale yarışmasında ödüle layık görüldü.\nŞehir tarihi ve monografi alanında eserler kaleme alan, proje editörlüğü ve metin yazarlığı yapan Altıntaş, Üsküdar’da yaşıyor.\nYayınlanmış kitapları:\nBursa’nın Daveti-Bir Osmanlı Başkenti Güncesi\nBoğaz’ın Dört Muhafızı\nBen Şeyh Bedreddin/Derviş-Devlet-İsyan\nÖteki Padişah Cem",
+    "seo": {
+      "title": "Samet Altıntaş",
+      "description": "Samet Altıntaş - gdh tarih"
+    },
+    "user_id": 3755069,
+    "user": null
+  },
+  {
+    "id": 55,
+    "full_name": "Neval Konuk Halaçoğlu",
+    "picture": null,
+    "email": null,
+    "updated_at": "2023-06-20T09:19:47.982Z",
+    "created_at": "2023-06-20T09:19:47.975Z",
+    "featured": 0,
+    "slug": "neval-konuk-halacoglu",
+    "description": "İstanbul’da doğdu. Ankara Gazi Üniversitesi Sanat Tarihi Bölümünden mezun olmuştur. Marmara Üniversitesi Türkiyat Araştırmaları Enstitüsü’nde Türk Sanatı alnında Yüksek Lisans yaptı. “Tanzimat Sonrası, Osmanlı Rumeli Vilayetleri Hükümet Konaklarında İdeoloji ve Erk’in Mimari Temsili (1839-1922)”, başlıklı teziyle Mimarlık Tarihi’nde doktorasını yapmıştır. Marmara Üniversitesi Mimarlık Tarihi öğretim üyesidir. Balkanlarda Osmanlı mimarisi ile ilgili yazılmış 12 kitabı ve 50’nin üzerinde uluslararası makalesi ve kitap bölümü vardır. T.C. Dışişleri Bakanlığı adına Yunanistan’daki Osmanlı Mimari Eserlerinin Envanterini Tespit Projesi’ni 2006 yılından itibaren tek başına gerçekleştirmektedir. Kosova Sultan Murad Hüdavendigar Türbesi, Prizren Osmanlı Mezarlığı vb. restorasyonlarda bilim kurulu üyeliği yapmıştır. Rumeli’de Osmanlı kültürü hakkında ulusal ve uluslararası basında yayınlanmış çok sayıda köşe yazısı bulunmaktadır. 21 yıldır Balkanlarda Osmanlı mimarisi ve kültürü hakkında araştırma ve çalışmalarını yürütmektedir.",
+    "seo": {
+      "title": "Neval Konuk Halaçoğlu",
+      "description": "Neval Konuk Halaçoğlu - gdh tarih"
+    },
+    "user_id": 3755105,
+    "user": null
+  },
+  {
+    "id": 53,
+    "full_name": "Hamdi Akyol",
+    "picture": {
+      "key": "b9497d96-0e33-4cbb-073c-10c2ae997800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b9497d96-0e33-4cbb-073c-10c2ae997800/public",
+      "width": 720,
+      "height": 720
+    },
+    "email": "",
+    "updated_at": "2023-06-21T04:41:13.695Z",
+    "created_at": "2023-06-20T09:15:35.985Z",
+    "featured": 0,
+    "slug": "hamdiakyol",
+    "description": " Rumeli kökenli bir ailenin çocuğu olarak 1971 yılında İstanbul’da doğdu. Eğitim hayatı dâhil tüm ömrünü bu şehirde geçirdi. Marmara Üniversitesi Güzel Sanatlar Fakültesi Resim bölümünde okudu. 90’lı yılların başlarında tasarımcı olarak girdiği yayıncılık dünyasında bir süre sonra editörlük de yapmaya başladı. 30 yılı aşkın bir sürede yayıncılık dünyasında yüzlerce telif ve tercüme eseri yayına hazırladı. Bu süreçte TV kanalları ve sinema sektörü için sayısız altyazı ve dublaj çevirisi yaptı. Birçok dergi ve gazetede kitap, müzik ve sinema alanlarında tanıtım ve eleştiriler kaleme aldı. 2021 yılında Kurt Gölgesi adlı romanı yayınlandı ve kısa sürede iki baskı yaptı. Evli ve iki çocuk babasıdır.",
+    "seo": {
+      "title": "Hamdi Akyol",
+      "description": "Hamdi Akyol - gdh tarih"
+    },
+    "user_id": 3755046,
+    "user": null
+  },
+  {
+    "id": 56,
+    "full_name": "Hüseyin Koyuncuoğlu",
+    "picture": {
+      "key": "b8509c06-46da-48fa-609a-a9c5e357d100",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/b8509c06-46da-48fa-609a-a9c5e357d100/public",
+      "width": 1200,
+      "height": 1029
+    },
+    "email": "",
+    "updated_at": "2023-08-05T08:04:41.336Z",
+    "created_at": "2023-07-03T07:20:51.832Z",
+    "featured": 0,
+    "slug": "huseyinkoyuncuoglu",
+    "description": "",
+    "seo": {
+      "title": "Hüseyin Koyuncuoğlu",
+      "description": "gdh Finans, piyasalar ve ekonomi gündemine dair tüm gelişmelerden anında haberdar olun."
+    },
+    "user_id": 3989879,
+    "user": null
+  },
+  {
+    "id": 66,
+    "full_name": "Nuh Arslantaş",
+    "picture": {
+      "key": "7fa532f8-a260-4c61-b06e-7d1a7a519700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/7fa532f8-a260-4c61-b06e-7d1a7a519700/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "email": null,
+    "updated_at": "2023-11-06T03:53:28.316Z",
+    "created_at": "2023-11-06T03:53:28.308Z",
+    "featured": 0,
+    "slug": "nuharslantas",
+    "description": "Nuh Arslantaş - gdh Tarih",
+    "seo": {
+      "title": "Nuh Arslantaş - gdh Tarih",
+      "description": "Nuh Arslantaş - gdh Tarih"
+    },
+    "user_id": 6301660,
+    "user": null
+  },
+  {
+    "id": 72,
+    "full_name": "Yusuf Uluçam",
+    "picture": {
+      "key": "36b10bc6-4901-40a7-0c98-6f6125558200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/36b10bc6-4901-40a7-0c98-6f6125558200/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "email": "y.ulucam@gmail.com",
+    "updated_at": "2023-12-09T04:01:45.631Z",
+    "created_at": "2023-12-09T04:01:43.085Z",
+    "featured": 0,
+    "slug": "yusufulucam",
+    "description": "Yusuf Uluçam - 11:45 ",
+    "seo": {
+      "title": "Yusuf Uluçam - 11:45 ",
+      "description": "Yusuf Uluçam - 11:45 "
+    },
+    "user_id": 6297958,
+    "user": null
+  },
+  {
+    "id": 63,
+    "full_name": "Mustafa Küçükal",
+    "picture": {
+      "key": "17dabd7a-a371-4d40-38c5-d7f037389600",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/17dabd7a-a371-4d40-38c5-d7f037389600/public",
+      "width": 1280,
+      "height": 720
+    },
+    "email": null,
+    "updated_at": "2024-10-31T04:33:42.076Z",
+    "created_at": "2023-09-19T16:18:02.040Z",
+    "featured": 0,
+    "slug": "mustafakucukal",
+    "description": "Mustafa Küçükal",
+    "seo": {
+      "title": "Mustafa Küçükal - gdh haber",
+      "description": "Mustafa Küçükal - gdh haber"
+    },
+    "user_id": 5371972,
+    "user": null
+  },
+  {
+    "id": 60,
+    "full_name": "Doğacan Başaran",
+    "picture": {
+      "key": "442052eb-bac0-4aa9-6366-07fa50de6200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/442052eb-bac0-4aa9-6366-07fa50de6200/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "email": null,
+    "updated_at": "2024-12-02T13:33:26.533Z",
+    "created_at": "2023-07-25T08:57:39.040Z",
+    "featured": 65,
+    "slug": "dogacanbarasan",
+    "description": null,
+    "seo": {
+      "title": "Dr. Doğacan Başaran",
+      "description": "Doğacan Başaran - gdh haber"
+    },
+    "user_id": 4403670,
+    "user": null
+  },
+  {
+    "id": 67,
+    "full_name": "Burhan Yolal",
+    "picture": {
+      "key": "2bcc19b3-97b2-469c-18f9-b77e21fdb400",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/2bcc19b3-97b2-469c-18f9-b77e21fdb400/public",
+      "width": 1280,
+      "height": 1259
+    },
+    "email": null,
+    "updated_at": "2023-11-11T07:52:21.489Z",
+    "created_at": "2023-11-11T07:49:13.120Z",
+    "featured": 0,
+    "slug": "burhanyolal",
+    "description": "Burhan Yolal-gdh haber",
+    "seo": {
+      "title": "Burhan Yolal-gdh haber",
+      "description": "Burhan Yolal-gdh haber"
+    },
+    "user_id": 6440718,
+    "user": null
+  },
+  {
+    "id": 64,
+    "full_name": "Yüksel Okşak",
+    "picture": {
+      "key": "dd0e48e6-d7b0-4d5b-5a1c-75c7aab12200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/dd0e48e6-d7b0-4d5b-5a1c-75c7aab12200/public",
+      "width": 764,
+      "height": 768
+    },
+    "email": "yukseloksak16@gmail.com",
+    "updated_at": "2023-09-25T06:10:12.859Z",
+    "created_at": "2023-09-25T06:09:54.639Z",
+    "featured": 0,
+    "slug": "yukseloksak",
+    "description": "Doç. Dr. Yüksel Okşan",
+    "seo": {
+      "title": "Doç. Dr. Yüksel Okşak - gdh Finans",
+      "description": "Doç. Dr. Yüksel Okşak - gdh Finans"
+    },
+    "user_id": 5495004,
+    "user": null
+  },
+  {
+    "id": 73,
+    "full_name": "Emrullah Acar",
+    "picture": {
+      "key": "44ab5abe-675e-401e-b191-7a02349e8c00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/44ab5abe-675e-401e-b191-7a02349e8c00/public",
+      "width": 731,
+      "height": 658
+    },
+    "email": null,
+    "updated_at": "2024-01-03T10:00:21.697Z",
+    "created_at": "2024-01-03T10:00:21.689Z",
+    "featured": 0,
+    "slug": "emrullahacar",
+    "description": "Emrullah Acar - gdh Teknoloji",
+    "seo": {
+      "title": "Emrullah Acar - gdh Teknoloji",
+      "description": "Emrullah Acar - gdh Teknoloji"
+    },
+    "user_id": 129,
+    "user": null
+  },
+  {
+    "id": 69,
+    "full_name": "Ceyhun Bozkurt",
+    "picture": {
+      "key": "5f6fe5fc-7e50-4137-c021-53403d4ee300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/5f6fe5fc-7e50-4137-c021-53403d4ee300/public",
+      "width": 1242,
+      "height": 1360
+    },
+    "email": null,
+    "updated_at": "2023-11-14T06:19:29.579Z",
+    "created_at": "2023-11-14T06:18:38.973Z",
+    "featured": 0,
+    "slug": "ceyhunbozkurt",
+    "description": "Ceyhun Bozkurt - gdh haber",
+    "seo": {
+      "title": "Ceyhun Bozkurt - gdh haber",
+      "description": "Ceyhun Bozkurt - gdh haber"
+    },
+    "user_id": 6487097,
+    "user": null
+  },
+  {
+    "id": 65,
+    "full_name": "Ferhat Öztürk",
+    "picture": {
+      "key": "fefbef3c-10c0-43b1-a65b-44c4e5158700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/fefbef3c-10c0-43b1-a65b-44c4e5158700/public",
+      "width": 952,
+      "height": 960
+    },
+    "email": "",
+    "updated_at": "2023-10-12T10:02:18.537Z",
+    "created_at": "2023-10-12T09:04:49.515Z",
+    "featured": 0,
+    "slug": "ferhatozturk",
+    "description": "Ferhat Öztürk",
+    "seo": {
+      "title": "Ferhat Öztürk",
+      "description": "Ferhat Öztürk-gdh haber"
+    },
+    "user_id": 4156601,
+    "user": null
+  },
+  {
+    "id": 71,
+    "full_name": "Ozan Ali İhsan Çelik",
+    "picture": {
+      "key": "8db39390-b568-48e1-83aa-84626ca61300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/8db39390-b568-48e1-83aa-84626ca61300/public",
+      "width": 640,
+      "height": 641
+    },
+    "email": null,
+    "updated_at": "2023-11-20T10:21:41.135Z",
+    "created_at": "2023-11-20T10:21:41.127Z",
+    "featured": 0,
+    "slug": "ozan-ali-ihsan-celik",
+    "description": "Ozan Ali İhsan Çelik-gdh tarih",
+    "seo": {
+      "title": "Ozan Ali İhsan Çelik",
+      "description": "Ozan Ali İhsan Çelik-gdh tarih"
+    },
+    "user_id": 6610100,
+    "user": null
+  },
+  {
+    "id": 75,
+    "full_name": "Ahmet Bilal Hamzaçebi",
+    "picture": {
+      "key": "db49865a-e039-4aeb-dfe8-9c044fea8800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/db49865a-e039-4aeb-dfe8-9c044fea8800/public",
+      "width": 2160,
+      "height": 2160
+    },
+    "email": "ahmetbilal.hamzacebi@gdh.digital",
+    "updated_at": "2024-03-11T04:32:06.494Z",
+    "created_at": "2024-02-06T10:36:59.967Z",
+    "featured": 0,
+    "slug": "ahmetbilalhamzacebi",
+    "description": "Ahmet Bilal Hamzaçebi",
+    "seo": {
+      "title": "Ahmet Bilal Hamzaçebi - gdh haber",
+      "description": "Ahmet Bilal Hamzaçebi - gdh haber"
+    },
+    "user_id": 8635032,
+    "user": null
+  },
+  {
+    "id": 74,
+    "full_name": "Emrullah Acar",
+    "picture": {
+      "key": "2c1b50fb-0f93-4a0c-3e30-aeaf3f3f0500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/2c1b50fb-0f93-4a0c-3e30-aeaf3f3f0500/public",
+      "width": 731,
+      "height": 658
+    },
+    "email": null,
+    "updated_at": "2024-01-04T11:01:15.136Z",
+    "created_at": "2024-01-04T11:01:07.849Z",
+    "featured": 0,
+    "slug": "emrullahacar2",
+    "description": "Emrullah Acar - gdh teknoloji",
+    "seo": {
+      "title": "Emrullah Acar - gdh teknoloji",
+      "description": "Emrullah Acar - gdh teknoloji"
+    },
+    "user_id": 7758947,
+    "user": null
+  },
+  {
+    "id": 70,
+    "full_name": "gfinans",
+    "picture": {
+      "key": "9645e6a7-ec60-4a3d-60b1-8b0eea4f9b00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/9645e6a7-ec60-4a3d-60b1-8b0eea4f9b00/public",
+      "width": 4500,
+      "height": 4500
+    },
+    "email": null,
+    "updated_at": "2024-01-20T04:51:44.068Z",
+    "created_at": "2023-11-17T10:29:01.708Z",
+    "featured": 0,
+    "slug": "gfinans",
+    "description": "gfinans",
+    "seo": {
+      "title": "gfinans",
+      "description": "gfinans"
+    },
+    "user_id": 6552721,
+    "user": null
+  },
+  {
+    "id": 76,
+    "full_name": "Mustafa Çuhadar",
+    "picture": {
+      "key": "01885d88-7af1-4945-73dc-272fc40a8000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/01885d88-7af1-4945-73dc-272fc40a8000/public",
+      "width": 709,
+      "height": 945
+    },
+    "email": null,
+    "updated_at": "2024-02-26T11:42:22.964Z",
+    "created_at": "2024-02-26T10:07:59.127Z",
+    "featured": 55,
+    "slug": "mustafacuhadar",
+    "description": "Mustafa Çuhadar - gdh haber",
+    "seo": {
+      "title": "Mustafa Çuhadar - gdh haber",
+      "description": "Mustafa Çuhadar - gdh haber"
+    },
+    "user_id": 9231141,
+    "user": null
+  },
+  {
+    "id": 62,
+    "full_name": "Kazım Altan Gürel",
+    "picture": {
+      "key": "87b18108-39bc-4e61-0920-e915decc5500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/87b18108-39bc-4e61-0920-e915decc5500/public",
+      "width": 962,
+      "height": 972
+    },
+    "email": null,
+    "updated_at": "2024-02-12T04:16:33.650Z",
+    "created_at": "2023-09-12T10:31:30.424Z",
+    "featured": 55,
+    "slug": "kazimaltangurel",
+    "description": null,
+    "seo": {
+      "title": "Kazım Altan Gürel",
+      "description": "Kazım Altan Gürel - gdh haber"
+    },
+    "user_id": 5230945,
+    "user": null
+  },
+  {
+    "id": 77,
+    "full_name": "Sadık Can Gençer",
+    "picture": {
+      "key": "fbc374be-57be-4a83-2ebd-565e06df7500",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/fbc374be-57be-4a83-2ebd-565e06df7500/public",
+      "width": 2160,
+      "height": 2160
+    },
+    "email": null,
+    "updated_at": "2024-05-27T09:40:56.003Z",
+    "created_at": "2024-05-03T11:21:32.814Z",
+    "featured": 0,
+    "slug": "sadikcangencer",
+    "description": null,
+    "seo": {
+      "title": "Sadık Can Gençer",
+      "description": "Sadık Can Gençer"
+    },
+    "user_id": 10975177,
+    "user": null
+  },
+  {
+    "id": 46,
+    "full_name": "Müzeyyen Bıyık",
+    "picture": null,
+    "email": null,
+    "updated_at": "2024-08-09T09:58:55.314Z",
+    "created_at": "2023-04-12T07:06:39.411Z",
+    "featured": null,
+    "slug": "muzeyyen-biyik",
+    "description": null,
+    "seo": {
+      "title": "Müzeyyen Bıyık",
+      "description": "Müzeyyen Bıyık - gdh haber"
+    },
+    "user_id": 2440146,
+    "user": null
+  },
+  {
+    "id": 78,
+    "full_name": "Taceddin Kutay",
+    "picture": {
+      "key": "feea104c-4540-483d-8889-c97f0b54c200",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/feea104c-4540-483d-8889-c97f0b54c200/public",
+      "width": 1000,
+      "height": 1000
+    },
+    "email": null,
+    "updated_at": "2024-05-31T02:07:48.923Z",
+    "created_at": "2024-05-31T02:07:48.906Z",
+    "featured": 0,
+    "slug": "taceddinkutay",
+    "description": null,
+    "seo": {
+      "title": "Taceddin Kutay",
+      "description": "Taceddin Kutay"
+    },
+    "user_id": 11673345,
+    "user": null
+  },
+  {
+    "id": 81,
+    "full_name": "Cahid Atik",
+    "picture": {
+      "key": "f8766584-b06d-4c0d-363f-f26543998000",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/f8766584-b06d-4c0d-363f-f26543998000/public",
+      "width": 625,
+      "height": 506
+    },
+    "email": "",
+    "updated_at": "2024-11-14T03:27:05.257Z",
+    "created_at": "2024-07-01T05:54:02.058Z",
+    "featured": 100,
+    "slug": "cahitatik",
+    "description": "",
+    "seo": {
+      "title": "Cahid Atik",
+      "description": "Cahid Atik - gdh digital"
+    },
+    "user_id": 12576071,
+    "user": null
+  },
+  {
+    "id": 79,
+    "full_name": "Yusuf Alabarda",
+    "picture": {
+      "key": "94657f2e-5809-48c2-e5da-f8d06fc73700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/94657f2e-5809-48c2-e5da-f8d06fc73700/public",
+      "width": 1066,
+      "height": 956
+    },
+    "email": null,
+    "updated_at": "2024-06-01T03:47:20.709Z",
+    "created_at": "2024-06-01T03:11:43.569Z",
+    "featured": 45,
+    "slug": "yusufalabarda",
+    "description": null,
+    "seo": {
+      "title": "Yusuf Alabarda",
+      "description": "Yusuf Alalarda - gdh özel"
+    },
+    "user_id": 11694537,
+    "user": null
+  },
+  {
+    "id": 85,
+    "full_name": "Abdullah Aydemir",
+    "picture": {
+      "key": "99630004-ae10-4e68-8ce8-89e808d29c00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/99630004-ae10-4e68-8ce8-89e808d29c00/public",
+      "width": 591,
+      "height": 709
+    },
+    "email": null,
+    "updated_at": "2024-09-11T04:29:55.066Z",
+    "created_at": "2024-09-11T04:29:49.230Z",
+    "featured": 0,
+    "slug": "abdullahaydemir1",
+    "description": "Abdullah Aydemir - gdh haber",
+    "seo": {
+      "title": "Abdullah Aydemir",
+      "description": "Abdullah Aydemir - gdh haber"
+    },
+    "user_id": 17672713,
+    "user": null
+  },
+  {
+    "id": 86,
+    "full_name": "Erkin Özkar",
+    "picture": null,
+    "email": null,
+    "updated_at": "2024-09-13T03:48:59.749Z",
+    "created_at": "2024-09-13T03:48:59.742Z",
+    "featured": 0,
+    "slug": "erkinozkar",
+    "description": "Erkin Özkar - gdh grafik tasarım ",
+    "seo": {
+      "title": "Erkin Özkar - gdh grafik tasarım ",
+      "description": "Erkin Özkar - gdh grafik tasarım "
+    },
+    "user_id": 17792755,
+    "user": null
+  },
+  {
+    "id": 88,
+    "full_name": "Levent Tok",
+    "picture": {
+      "key": "abdda27b-93e8-45df-62f7-4237b0d0ef00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/abdda27b-93e8-45df-62f7-4237b0d0ef00/public",
+      "width": 2160,
+      "height": 2160
+    },
+    "email": null,
+    "updated_at": "2024-09-18T06:32:39.267Z",
+    "created_at": "2024-09-18T06:32:39.250Z",
+    "featured": 0,
+    "slug": "leventtok",
+    "description": "Levent Tok - gdh haber",
+    "seo": {
+      "title": "Levent Tok",
+      "description": "Levent Tok - gdh haber"
+    },
+    "user_id": 18171348,
+    "user": null
+  },
+  {
+    "id": 89,
+    "full_name": "kullanıcı deneyimi",
+    "picture": null,
+    "email": null,
+    "updated_at": "2024-09-19T09:18:25.410Z",
+    "created_at": "2024-09-19T09:18:25.401Z",
+    "featured": null,
+    "slug": "kullanici-deneyimi",
+    "description": null,
+    "seo": {
+      "title": "Kullanıcı Deneyimi",
+      "description": "Kullanıcı Deneyimi"
+    },
+    "user_id": 18242388,
+    "user": null
+  },
+  {
+    "id": 84,
+    "full_name": "Abdullah Aydemir",
+    "picture": null,
+    "email": null,
+    "updated_at": "2024-10-30T11:05:10.268Z",
+    "created_at": "2024-09-11T04:06:13.723Z",
+    "featured": 0,
+    "slug": "abdullahaydemir",
+    "description": "Abdullah Aydemir - gdh haber",
+    "seo": {
+      "title": "Abdullah Aydemir - gdh haber",
+      "description": "Abdullah Aydemir - gdh haber"
+    },
+    "user_id": 17563751,
+    "user": null
+  },
+  {
+    "id": 91,
+    "full_name": "Gökhan İlker",
+    "picture": null,
+    "email": "gokhan.ilker@gdh.digital",
+    "updated_at": "2024-10-31T05:22:38.807Z",
+    "created_at": "2024-10-31T04:21:03.792Z",
+    "featured": 100,
+    "slug": "gokhanilker",
+    "description": "Gökhan İlker - gdh haber",
+    "seo": {
+      "title": "Gökhan İlker",
+      "description": "Gökhan İlker - gdh haber"
+    },
+    "user_id": 20942040,
+    "user": null
+  },
+  {
+    "id": 82,
+    "full_name": "Hüseyin Can Yosuntaş",
+    "picture": {
+      "key": "6ac1194f-23b6-485e-194e-ff59ae456e00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/6ac1194f-23b6-485e-194e-ff59ae456e00/public",
+      "width": 346,
+      "height": 406
+    },
+    "email": null,
+    "updated_at": "2024-09-27T05:52:53.117Z",
+    "created_at": "2024-08-20T07:37:24.588Z",
+    "featured": null,
+    "slug": "huseyincanyosuntas",
+    "description": "Hüseyin Can Yosuntaş-gdh haber",
+    "seo": {
+      "title": "Hüseyin Can Yosuntaş",
+      "description": "Hüseyin Can Yosuntaş"
+    },
+    "user_id": 16147413,
+    "user": null
+  },
+  {
+    "id": 90,
+    "full_name": "Ömer Yıldız",
+    "picture": {
+      "key": "bfc66d28-e879-49f8-92d8-3c6293354700",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/bfc66d28-e879-49f8-92d8-3c6293354700/public",
+      "width": 1080,
+      "height": 801
+    },
+    "email": "omersiyan.yildiz@gdh.digital",
+    "updated_at": "2024-09-30T12:19:03.718Z",
+    "created_at": "2024-09-24T04:54:04.690Z",
+    "featured": 0,
+    "slug": "omeryildiz",
+    "description": "Ömer Yıldız - gdh haber",
+    "seo": {
+      "title": "Ömer Yıldız",
+      "description": "Ömer Yıldız - gdh haber"
+    },
+    "user_id": 18346522,
+    "user": null
+  },
+  {
+    "id": 92,
+    "full_name": "Dr. Doğacan Başaran",
+    "picture": {
+      "key": "8ce772d4-4314-4a43-c3b8-a3675b595b00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/8ce772d4-4314-4a43-c3b8-a3675b595b00/public",
+      "width": 1000,
+      "height": 562
+    },
+    "email": null,
+    "updated_at": "2024-12-03T05:22:07.444Z",
+    "created_at": "2024-12-03T04:29:29.988Z",
+    "featured": 0,
+    "slug": "drdogacanbasaran",
+    "description": "Dr. Doğacan Başaran - gdh haber",
+    "seo": {
+      "title": "Dr. Doğacan Başaran - gdh haber",
+      "description": "Dr. Doğacan Başaran - gdh haber"
+    },
+    "user_id": 22966121,
+    "user": null
+  },
+  {
+    "id": 87,
+    "full_name": "Deniz Ali Tatar",
+    "picture": {
+      "key": "71224525-b699-42f1-5128-0957bd7be300",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/71224525-b699-42f1-5128-0957bd7be300/public",
+      "width": 853,
+      "height": 921
+    },
+    "email": "denizali.tatar@gdh.digital",
+    "updated_at": "2024-11-07T04:40:21.715Z",
+    "created_at": "2024-09-16T03:39:22.394Z",
+    "featured": null,
+    "slug": "denizalitatar",
+    "description": "gdh haber - Kültür Sanat Editörü",
+    "seo": {
+      "title": "Deniz Ali Tatar",
+      "description": "Deniz Ali Tatar - gdh haber - Kültür Sanat Editörü"
+    },
+    "user_id": 18023068,
+    "user": null
+  },
+  {
+    "id": 83,
+    "full_name": "Halil İbrahim Kutlu",
+    "picture": {
+      "key": "5961cdf5-8d14-4d92-a6cd-dbab01763800",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/5961cdf5-8d14-4d92-a6cd-dbab01763800/public",
+      "width": 640,
+      "height": 640
+    },
+    "email": null,
+    "updated_at": "2024-12-05T11:41:01.689Z",
+    "created_at": "2024-09-03T12:01:25.202Z",
+    "featured": null,
+    "slug": "halilibrahimkutlu",
+    "description": "Halil İbrahim Kutlu - gdh tarih",
+    "seo": {
+      "title": "Halil İbrahim Kutlu",
+      "description": "Halil İbrahim Kutlu - gdh tarih"
+    },
+    "user_id": 17232658,
+    "user": null
+  },
+  {
+    "id": 80,
+    "full_name": "Serhıldan Hülakü",
+    "picture": {
+      "key": "bc50042b-4a47-4613-3baf-df2b78531b00",
+      "url": "https://imagedelivery.net/qIvImu8MgTZD-kGvW-i83w/bc50042b-4a47-4613-3baf-df2b78531b00/public",
+      "width": 3477,
+      "height": 1955
+    },
+    "email": "serhildan.hulaku@gdh.digital",
+    "updated_at": "2024-12-06T08:24:39.970Z",
+    "created_at": "2024-06-27T08:40:34.898Z",
+    "featured": 88,
+    "slug": "serhildanhulaku",
+    "description": "Serhıldan Hülakü - gdh haber Editörü \n\nSerhıldan Hülakü, İstanbul Kültür Üniversitesi Uluslararası İlişkiler (İngilizce) bölümünden mezun oldu. Çeşitli web sitelerine ve kendi sosyal ağlarına içerik üreten Hülakü, gazetecilik ve medya alanında çeşitli gazetelerde çalıştı. Haberler.com ve Sondakika.com'da \"Haber Editörü\" ve \"SEO Editörü\" pozisyonlarını doldurdu. Şu anda gdh.digital'de \"Haber Editörü\" olarak çalışıyor. \"Vesikalık\" adında bir de kitabı bulunuyor.",
+    "seo": {
+      "title": "Serhıldan Hülakü haberleri, Serhıldan Hülakü kimdir?",
+      "description": "Serhıldan Hülakü haberleri\nSerhıldan Hülakü kimdir?"
+    },
+    "user_id": 12276098,
+    "user": null
+  }
+]

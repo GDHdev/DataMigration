@@ -6,9 +6,156 @@ import bcryptjs from "bcryptjs";
 import fs from "fs/promises";
 import dotenv from "dotenv";
 
+import { JSONFilePreset } from "lowdb/node";
+
+import { getAspectRatio } from "./media.js";
+
+// Read or create db.json
+
+/**
+ * @type { Record<"ratios", Array< VideoMetadata >> }
+ */
+const defaultData = { ratios: [] };
+const db = await JSONFilePreset("metadata.json", defaultData);
+
 dotenv.config();
 
 const { Client } = pg;
+
+/**
+ * Bir tablo kaydını temsil eden obje.
+ *
+ * @typedef {Object} Story
+ * @property {number} id - Kaydın benzersiz kimliği (serial4).
+ * @property {Object} video - Video bilgilerini içeren JSONB veri türü.
+ * @property {Object} embed - Gömülü içerik bilgilerini içeren JSONB veri türü.
+ * @property {string} title - İçeriğin başlığı.
+ * @property {string} message - İçeriğin mesajı.
+ * @property {string} content - İçeriğin ana metni.
+ * @property {Object} content_data - İçeriğin ek verilerini içeren JSONB veri türü.
+ * @property {boolean} pinned - Kaydın sabitlenmiş olup olmadığını belirtir.
+ * @property {string} status - İçeriğin durumunu temsil eden enum türü.
+ * @property {string} created_from - Kaydın oluşturulduğu yer bilgisi.
+ * @property {string} updated_from - Kaydın güncellendiği yer bilgisi.
+ * @property {string} updated_at - Kaydın son güncellenme zamanı (timestamp).
+ * @property {string} created_at - Kaydın oluşturulma zamanı (timestamp).
+ * @property {string|null} deleted_at - Kaydın silinme zamanı, silinmemişse `null`.
+ * @property {number} created_by_id - Kaydı oluşturan kullanıcının kimliği (int4).
+ * @property {number} updated_by_id - Kaydı güncelleyen kullanıcının kimliği (int4).
+ * @property {string} chat - Chat bilgileri.
+ * @property {Object} message_data - Mesaj verilerini içeren JSONB veri türü.
+ * @property {number} chat_id - Chat kimliği (int4).
+ * @property {Object} audio - Ses verilerini içeren JSONB veri türü.
+ * @property {Object} images - Görselleri içeren JSONB veri türü.
+ * @property {string} poll - Anket bilgisi.
+ * @property {number} poll_id - Anket kimliği (int4).
+ * @property {Object} references - Referans bilgilerini içeren JSONB veri türü.
+ * @property {string} published_at - Yayınlanma zamanı (timestamp).
+ * @property {number} assignee_id - Atanan kişinin kimliği (int4).
+ * @property {number} brand_id - Markanın kimliği (int4).
+ * @property {number} category_id - Kategorinin kimliği (int4).
+ * @property {number} popularity - Popülerlik değeri (int4).
+ * @property {number} author_id - Yazara ait kimlik (int4).
+ * @property {string} slug - İçeriğin kısa adı.
+ * @property {Object} seo - SEO bilgilerini içeren JSONB veri türü.
+ * @property {boolean} global - Küresel bir içerik olup olmadığını belirtir.
+ * @property {boolean} premium - Premium içerik olup olmadığını belirtir.
+ * @property {number} stat_views - Görüntülenme sayısı (int4).
+ * @property {number} stat_hits - Hit sayısı (int4).
+ * @property {number} stat_comments - Yorum sayısı (int4).
+ * @property {number} stat_bookmarks - Kaydetme sayısı (int4).
+ * @property {number} stat_favorites - Favorilere eklenme sayısı (int4).
+ * @property {string} vector - TSVector veri türü (metin araması için).
+ * @property {boolean} breaking - Çarpıcı haber olup olmadığını belirtir.
+ * @property {boolean} sidebar - Yan panelde gösterilip gösterilmeyeceğini belirtir.
+ * @property {string} breaking_text - Çarpıcı haber metni.
+ * @property {boolean} election - Seçim bilgisiyle ilişkili olup olmadığını belirtir.
+ */
+
+/**
+ * News tablosunu temsil eden bir obje.
+ *
+ * @typedef {Object} News
+ * @property {string} id - Haberin benzersiz kimliği (varchar(255)).
+ * @property {string} type - Haberin türü (public.enum_news_type).
+ * @property {string} title - Haberin başlığı.
+ * @property {string} description - Haberin açıklaması.
+ * @property {string} slug - Haberin kısa adı (slug).
+ * @property {string} content - Haberin içeriği.
+ * @property {Object} thumbnails - Haberin küçük resim bilgileri (json).
+ * @property {string} caption - Haberin başlığı veya alt metni.
+ * @property {Object} seo - Haberin SEO bilgileri (json).
+ * @property {string} status - Haberin durumu (public.enum_news_status).
+ * @property {string} category_id - Kategori kimliği (varchar(255)).
+ * @property {string} brand_id - Marka kimliği (varchar(255)).
+ * @property {string} subcategory_id - Alt kategori kimliği (varchar(255)).
+ * @property {number} number_of_view - Haberin görüntülenme sayısı (int4).
+ * @property {boolean} is_premium - Premium içerik olup olmadığını belirtir.
+ * @property {string} created_by - Haberi oluşturan kullanıcı (varchar(255)).
+ * @property {string} approved_by - Haberi onaylayan kullanıcı (varchar(255)).
+ * @property {string} published_at - Haberin yayınlanma zamanı (timestamptz).
+ * @property {string[]} recommendation - Haberin önerilen içerikleri (_varchar).
+ * @property {string} galleryId - Galeri kimliği (varchar(255)).
+ * @property {string} created_at - Haberin oluşturulma zamanı (timestamptz).
+ * @property {string} updated_at - Haberin güncellenme zamanı (timestamptz).
+ * @property {string|null} deletedAt - Haberin silinme zamanı (timestamptz), eğer silinmemişse `null`.
+ * @property {string} special_news_id - Özel haber kimliği (varchar(255)).
+ * @property {string} audio - Haberin ses dosyası (varchar(255)).
+ * @property {string} video - Haberin video dosyası (varchar(255)).
+ * @property {string} list_title - Haberin liste başlığı (text).
+ * @property {string} import_id - İthalat kimliği (varchar(255)).
+ * @property {string} references - Haberin referans bilgileri (varchar(255)).
+ */
+
+/**
+ * Columns tablosunu temsil eden bir obje.
+ *
+ * @typedef {Object} Columns
+ * @property {string} id - Haberin benzersiz kimliği (varchar(255)).
+ * @property {string} title - Haberin başlığı (varchar(255)).
+ * @property {string} description - Haberin açıklaması (text).
+ * @property {string} content - Haberin içeriği (text).
+ * @property {boolean} is_active - Haber aktif mi, pasif mi olduğunu belirtir (bool).
+ * @property {string} status - Haberin durumu (public.enum_columns_status).
+ * @property {string} approved_by - Haberi onaylayan kullanıcının kimliği (varchar(255)).
+ * @property {string} writer_id - Haberi yazan kişinin kimliği (varchar(255)).
+ * @property {string} createdAt - Haberin oluşturulma zamanı (timestamptz).
+ * @property {string} updatedAt - Haberin güncellenme zamanı (timestamptz).
+ * @property {string|null} deletedAt - Haberin silinme zamanı, silinmediyse `null` (timestamptz(6)).
+ * @property {number} number_of_view - Haberin görüntülenme sayısı (int4).
+ * @property {Object} thumbnails - Haberin küçük resim bilgileri (json).
+ * @property {string} brand_id - Haberin ait olduğu markanın kimliği (varchar(255)).
+ * @property {string} category_id - Haberin kategorisinin kimliği (varchar(255)).
+ * @property {string} subcategory_id - Haberin alt kategorisinin kimliği (varchar(255)).
+ * @property {Object} seo - Haberin SEO bilgilerini içeren obje (json).
+ * @property {string} caption - Haberin başlığı veya alt metni (varchar(255)).
+ * @property {string} slug - Haberin kısa adı (varchar(255)).
+ * @property {string} audio - Habere ait ses dosyası (varchar(255)).
+ * @property {string} import_id - Haberin ithalat kimliği (varchar(255)).
+ */
+
+/**
+ * Shorts tablosunu temsil eden bir obje.
+ *
+ * @typedef {Object} Shorts
+ * @property {string} id - Short içeriğinin benzersiz kimliği (varchar(255)).
+ * @property {string} title - Short içeriğinin başlığı (text).
+ * @property {string} description - Short içeriğinin açıklaması (text).
+ * @property {string} slug - Short içeriğinin kısa adı (slug, varchar(255)).
+ * @property {string} url - Short içeriğinin URL'si (varchar(255)).
+ * @property {Object} thumbnails - Short içeriğinin küçük resim bilgileri (json).
+ * @property {string} status - Short içeriğinin durumu (public.enum_shorts_status).
+ * @property {string} category_id - Short'un kategorisi için kimlik (varchar(255)).
+ * @property {string} brand_id - Short'un markası için kimlik (varchar(255)).
+ * @property {string} subcategory_id - Short'un alt kategorisi için kimlik (varchar(255)).
+ * @property {number} number_of_views - Short içeriğinin görüntülenme sayısı (int4).
+ * @property {string} created_by - Short içeriğini oluşturan kişinin kimliği (varchar(255)).
+ * @property {string} approved_by - Short içeriğini onaylayan kişinin kimliği (varchar(255)).
+ * @property {string} created_at - Short içeriğinin oluşturulma zamanı (timestamptz).
+ * @property {string} updated_at - Short içeriğinin güncellenme zamanı (timestamptz).
+ * @property {string|null} deletedAt - Short içeriğinin silinme zamanı (timestamptz(6)), eğer silinmediyse `null`.
+ * @property {string} import_id - Short içeriği için ithalat kimliği (varchar(255)).
+ */
 
 const oldDbConfigs = {
   host: process.env.OLD_DB_HOST,
@@ -16,10 +163,10 @@ const oldDbConfigs = {
   user: process.env.OLD_DB_USER,
   password: process.env.OLD_DB_PASSWORD,
   database: process.env.OLD_DB_DATABASE,
-  ssl: {
-    rejectUnauthorized: false,
-    requestCert: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  //   requestCert: false,
+  // },
 };
 const newDbConfigs = {
   host: process.env.NEW_DB_HOST,
@@ -27,10 +174,10 @@ const newDbConfigs = {
   user: process.env.NEW_DB_USER,
   password: process.env.NEW_DB_PASSWORD,
   database: process.env.NEW_DB_DATABASE,
-  ssl: {
-    rejectUnauthorized: false,
-    requestCert: false,
-  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  //   requestCert: false,
+  // },
 };
 
 const client = new Client(oldDbConfigs);
@@ -221,6 +368,12 @@ const createNewBrand = async (brand) => {
   return inserted[0];
 };
 
+/**
+ * Haber oluşturma işlemini gerçekleştirir.
+ *
+ * @param {News} news - Haber bilgilerini içeren obje.
+ * @returns {Promise<News|boolean>} - Yeni oluşturulan haber objesi veya zaten varsa `false` döner.
+ */
 const createNews = async (news) => {
   // console.log(`creating news ${news.id}`);
   const query = `INSERT INTO news(${Object.keys(news).join(
@@ -242,6 +395,12 @@ const createNews = async (news) => {
   return res.rows[0];
 };
 
+/**
+ * Köşe yazısı oluşturma işlemini gerçekleştirir.
+ *
+ * @param {Columns} column - Köşe yazısı bilgilerini içeren obje.
+ * @returns {Promise<void>} - Yeni oluşturulan Köşe yazısı objesi veya zaten varsa `false` döner.
+ */
 const createColumn = async (column) => {
   // console.log(`creating column ${column.id}`);
   const query = `INSERT INTO columns(${Object.keys(column)
@@ -277,8 +436,35 @@ const createEditorNewsRelation = async (newsId, editorId) => {
   return res.rows[0];
 };
 
+/**
+ * @param {Shorts} shorts
+ * @returns {Promise<Shorts | false>}
+ */
+async function createShorts(shorts) {
+  const query = `INSERT INTO shorts(${Object.keys(shorts)
+    .map((c) => `"${c}"`)
+    .join(
+      ",",
+    )}) VALUES (${Object.keys(shorts).map((item, index) => `$${index + 1}`)})`;
+  const values = Object.values(shorts);
+
+  const exist = await newClient.query(
+    `SELECT * FROM shorts WHERE import_id='${shorts.import_id}'`,
+  );
+
+  if (exist.rows[0]) {
+    //console.log("exist", exist.rows[0].id);
+    return false;
+  }
+
+  const res = await newClient.query(query, values);
+
+  return res.rows[0];
+}
+
 const run = async () => {
   const READ_COUNT = 1000; // slice length
+  const BATCH_COUNT = 512;
 
   // connect news and old dbs
   await client.connect();
@@ -335,6 +521,9 @@ const run = async () => {
     }
   }
 
+  /**
+   * @type { Cursor<Story> }
+   */
   const stories = await client.query(
     new Cursor(
       "SELECT * FROM story where content_data is not null and status='published' and author_id is not null",
@@ -345,10 +534,57 @@ const run = async () => {
     let promises = [];
     const slice = await stories.read(READ_COUNT);
     for (let row of slice) {
+      /**
+       * Video metadata bilgilerini temsil eden bir obje.
+       *
+       * @typedef {Object} VideoMetadata
+       * @property {string} id - Videonun benzersiz kimliği.
+       * @property {string} title - Videonun başlığı veya mesajı. Eğer başlık yoksa `row.message` kullanılır.
+       * @property {string} source - Videonun orijinal kaynağının URL'si.
+       * @property {string} thumbnail - Videonun küçük resim URL'si. Orijinal URL "original" yerine "thumbnail.jpg" ile değiştirilir.
+       * @property {string} ratio - Videonun en-boy oranı (aspect ratio).
+       */
+
+      /**
+       * @type {VideoMetadata | undefined}
+       */
+      let videoMeta;
+
+      if (row.video) {
+        /**
+         * @type {VideoMetadata | undefined}
+         */
+        const exist = db.data.ratios.find((r) => r.id === row.id.toString());
+
+        if (exist) {
+          videoMeta = exist;
+        } else {
+          const ratio = await getAspectRatio(row.video.source);
+
+          /**
+           * @type {VideoMetadata}
+           */
+          const metadata = {
+            id: row.id.toString(),
+            title: row.title || row.message,
+            source: row.video.source,
+            thumbnail: row.video.source.replace("original", "thumbnail.jpg"),
+            ratio: ratio,
+          };
+
+          await db.data.ratios.push(metadata);
+
+          await db.write();
+
+          videoMeta = metadata;
+        }
+      }
+
       if (!row.images || row.images.length < 1) {
         console.log("no image..");
         continue;
       }
+
       const parsedContent = parser.parse(row.content_data);
       const id = Math.random().toString(36).substring(2, 18);
       const relatedAuthor = authors.find((i) => i.id === row.author_id);
@@ -371,9 +607,12 @@ const run = async () => {
           ? newBrandMapping[row.brand_id]
           : newCategoryMapping[row.category_id];
         if (brand) {
+          /**
+           * @type {News}
+           */
           const newsBody = {
             id,
-            slug: `${row.slug}-${id}`,
+            slug: `${row.slug?.slice(0, 239)}-${id}`,
             title: row.title,
             description: row.message,
             content: parsedContent,
@@ -393,10 +632,16 @@ const run = async () => {
             created_by: newDbEditor.id,
             created_at: row.created_at,
             updated_at: row.updated_at,
+            type: "news",
           };
-
+          /**
+           * @type { Columns | undefined }
+           */
           let columnBody;
 
+          /**
+           * @type { Array<"Taceddin Kutay" | "Cüneyt Polat" | "Yusuf Alabarda"> }
+           */
           const columnEditors = [
             "Taceddin Kutay",
             "Cüneyt Polat",
@@ -449,14 +694,73 @@ const run = async () => {
 
           try {
             const creationProcess = async () => {
-              if (columnBody) {
+              if (videoMeta) {
+                if (videoMeta.ratio === "9:16") {
+                  console.log("creating shorts");
+                  await createShorts({
+                    id,
+                    slug: `${row.slug}-${id}`,
+                    title: row.title,
+                    description: row.message,
+                    brand_id: brand.id,
+                    status: "published",
+                    url: row.video.playlist,
+                    thumbnails: {
+                      original: row.images[0]?.url,
+                      "3x2": row.images[0]?.url,
+                      "4x3": row.images[0]?.url,
+                      "9x16": row.images[0]?.url,
+                    },
+                    number_of_views: row.stat_views,
+                    import_id: row.id,
+                    created_by: newDbEditor.id,
+                    created_at: row.created_at,
+                    updated_at: row.updated_at,
+                  });
+                } else {
+                  console.log("creating video news");
+                  /**
+                   * Creating video news
+                   */
+                  const exist = await createNews({
+                    id,
+                    slug: `${row.slug.slice(0, 239)}-${id}`,
+                    title: row.title,
+                    description: row.message,
+                    brand_id: brand.id,
+                    seo: row.seo,
+                    status: "published",
+                    is_premium: row.premium,
+                    video: row.video.playlist,
+                    thumbnails: {
+                      original: row.images[0]?.url,
+                      "3x2": row.images[0]?.url,
+                      "4x3": row.images[0]?.url,
+                      "9x16": row.images[0]?.url,
+                    },
+                    number_of_views: row.stat_views,
+                    import_id: row.id,
+                    published_at: row.published_at,
+                    created_by: newDbEditor.id,
+                    created_at: row.created_at,
+                    updated_at: row.updated_at,
+                    type: "video",
+                  });
+
+                  // create news <> editor relations
+
+                  if (exist !== false) {
+                    await createEditorNewsRelation(id, newDbEditor.id);
+                  }
+                }
+              } else if (columnBody) {
                 await createColumn(columnBody);
               } else {
                 const exist = await createNews(newsBody);
 
                 // create news <> editor relations
 
-                if (exist) {
+                if (exist !== false) {
                   await createEditorNewsRelation(id, newDbEditor.id);
                 }
               }
@@ -464,9 +768,10 @@ const run = async () => {
 
             promises.push(creationProcess());
 
-            if (promises.length > 19) {
-              console.log("executing 20");
+            if (promises.length > BATCH_COUNT - 1) {
+              console.log("executing " + BATCH_COUNT);
               await Promise.all(promises).catch(console.error);
+
               promises = [];
             }
           } catch (err) {

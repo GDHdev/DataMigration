@@ -15,6 +15,9 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
     "editorjs-parser": "^1.5.3",
+    "lowdb": "^7.0.1",
+    "mediainfo.js": "^0.3.4",
+    "node-json-db": "^2.3.0",
     "pg": "^8.13.1",
     "pg-cursor": "^2.12.1",
     "uuid": "^11.0.3"
