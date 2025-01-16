@@ -173,10 +173,10 @@ const oldDbConfigs = {
   user: process.env.OLD_DB_USER,
   password: process.env.OLD_DB_PASSWORD,
   database: process.env.OLD_DB_DATABASE,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  //   requestCert: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+    requestCert: false,
+  },
 };
 const newDbConfigs = {
   host: process.env.NEW_DB_HOST,
@@ -184,10 +184,10 @@ const newDbConfigs = {
   user: process.env.NEW_DB_USER,
   password: process.env.NEW_DB_PASSWORD,
   database: process.env.NEW_DB_DATABASE,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  //   requestCert: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+    requestCert: false,
+  },
 };
 
 const client = new Client(oldDbConfigs);
