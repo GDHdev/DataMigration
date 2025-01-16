@@ -7,7 +7,7 @@ import fs from "fs";
  * @async
  * @function getAspectRatio
  * @param {string} url - The URL of the media file to analyze.
- * @returns {Promise<string|undefined>} The aspect ratio of the video in the format "width:height".
+ * @returns {Promise<string|false|undefined>} The aspect ratio of the video in the format "width:height".
  * Returns `undefined` if no video track is found in the media file.
  * @throws {Error} If the media file cannot be fetched or analyzed.
  *
@@ -29,6 +29,9 @@ export async function getAspectRatio(url) {
   // Playlist dosyasını indir
   const response = await fetch(url);
   if (!response.ok) {
+    if (response.status === 404) {
+      return false;
+    }
     throw new Error(`Dosya alınırken hata oluştu: ${response.statusText}`);
   }
 

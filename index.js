@@ -10,15 +10,25 @@ import { JSONFilePreset } from "lowdb/node";
 
 import { getAspectRatio } from "./media.js";
 
+import OpenAI from "openai";
+
+import slugify from "slugify";
+
+import workerpool from "workerpool";
+
+const pool = workerpool.pool();
+
 // Read or create db.json
 
 /**
- * @type { Record<"ratios", Array< VideoMetadata >> }
+ * @type { {ratios: VideoMetadata[], news: Array<{id: string, title: string, list_title: string}>} }
  */
-const defaultData = { ratios: [] };
+const defaultData = { ratios: [], news: [] };
 const db = await JSONFilePreset("metadata.json", defaultData);
 
 dotenv.config();
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const { Client } = pg;
 
@@ -222,7 +232,7 @@ const capitalizeWords = (str) =>
 const saveBrands = async () => {
   const brands = await client.query("SELECT * FROM brand");
 
-  console.log("brands", brands.rows);
+  console.info(new Date().toISOString(), ": ", "brands", brands.rows);
 
   fs.writeFile("brands.json", JSON.stringify(brands.rows));
 };
@@ -230,7 +240,7 @@ const saveBrands = async () => {
 const saveCategories = async () => {
   const categories = await client.query("SELECT * FROM category");
 
-  console.log("categories", categories.rows);
+  console.info(new Date().toISOString(), ": ", "categories", categories.rows);
 
   fs.writeFile("categories.json", JSON.stringify(categories.rows));
 };
@@ -253,7 +263,7 @@ const getTagRelationByStoryId = async (id) => {
 };
 
 const createEditor = async (editor) => {
-  console.log("creating new editor..");
+  console.info(new Date().toISOString(), ": ", "creating new editor..");
   const id = v4();
   const query = `INSERT INTO editors(id, email, fullname, password, is_active, role_id, is_email_verified, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`;
   const password = await bcryptjs.hash("123456", 10);
@@ -303,7 +313,7 @@ const getAuthors = async () => {
 };
 
 const createWriter = async (writer) => {
-  console.log("creating new writer..");
+  console.info(new Date().toISOString(), ": ", "creating new writer..");
   const id = v4();
   const query = `INSERT INTO writers(id, email, fullname, password, is_active, slug, created_at, updated_at) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
   const password = await bcryptjs.hash("123456", 10);
@@ -324,7 +334,7 @@ const createWriter = async (writer) => {
     `SELECT * FROM writers WHERE id='${id}'`,
   );
 
-  console.log(inserted);
+  console.info(new Date().toISOString(), ": ", inserted);
 
   return inserted[0];
 };
@@ -336,7 +346,11 @@ const getWriters = async () => {
 };
 
 const createNewBrand = async (brand) => {
-  console.log(`creating new brand ${brand.mapped}`);
+  console.info(
+    new Date().toISOString(),
+    ": ",
+    `creating new brand ${brand.mapped}`,
+  );
   const { rows: existed } = await newClient.query(
     `SELECT * FROM brands WHERE slug='${brand.mapped}'`,
   );
@@ -363,7 +377,7 @@ const createNewBrand = async (brand) => {
     `SELECT * FROM brands WHERE id='${id}'`,
   );
 
-  console.log("inserted", inserted[0]);
+  console.info(new Date().toISOString(), ": ", "inserted", inserted[0]);
 
   return inserted[0];
 };
@@ -372,10 +386,11 @@ const createNewBrand = async (brand) => {
  * Haber oluşturma işlemini gerçekleştirir.
  *
  * @param {News} news - Haber bilgilerini içeren obje.
+ * @param {Number} editorId - Editör id si
  * @returns {Promise<News|boolean>} - Yeni oluşturulan haber objesi veya zaten varsa `false` döner.
  */
-const createNews = async (news) => {
-  // console.log(`creating news ${news.id}`);
+const createNews = async (news, editorId) => {
+  // console.info(new Date().toISOString(),": ",`creating news ${news.id}`);
   const query = `INSERT INTO news(${Object.keys(news).join(
     ",",
   )}) VALUES (${Object.keys(news).map((item, index) => `$${index + 1}`)})`;
@@ -386,11 +401,13 @@ const createNews = async (news) => {
   );
 
   if (exist.rows[0]) {
-    //console.log("exist", exist.rows[0].id);
+    //console.info(new Date().toISOString(),": ","exist", exist.rows[0].id);
     return false;
   }
 
   const res = await newClient.query(query, values);
+
+  await createEditorNewsRelation(news.id, editorId);
 
   return res.rows[0];
 };
@@ -402,7 +419,7 @@ const createNews = async (news) => {
  * @returns {Promise<void>} - Yeni oluşturulan Köşe yazısı objesi veya zaten varsa `false` döner.
  */
 const createColumn = async (column) => {
-  // console.log(`creating column ${column.id}`);
+  // console.info(new Date().toISOString(),": ",`creating column ${column.id}`);
   const query = `INSERT INTO columns(${Object.keys(column)
     .map((c) => `"${c}"`)
     .join(
@@ -415,7 +432,7 @@ const createColumn = async (column) => {
   );
 
   if (exist.rows[0]) {
-    //console.log("exist", exist.rows[0].id);
+    //console.info(new Date().toISOString(),": ","exist", exist.rows[0].id);
     return false;
   }
 
@@ -425,7 +442,7 @@ const createColumn = async (column) => {
 };
 
 const createEditorNewsRelation = async (newsId, editorId) => {
-  // console.log(`creating news (${newsId}) editor (${editorId}) relation`);
+  // console.info(new Date().toISOString(),": ",`creating news (${newsId}) editor (${editorId}) relation`);
   const createdAt = new Date().toISOString();
   const query =
     'INSERT INTO news_writers_pivot(news_id, editor_id, "createdAt", "updatedAt") VALUES ($1,$2,$3,$4)';
@@ -453,7 +470,7 @@ async function createShorts(shorts) {
   );
 
   if (exist.rows[0]) {
-    //console.log("exist", exist.rows[0].id);
+    //console.info(new Date().toISOString(),": ","exist", exist.rows[0].id);
     return false;
   }
 
@@ -473,7 +490,11 @@ const run = async () => {
   const authors = await getAuthors();
   const writers = await getWriters();
 
-  console.log("deleted brands getting removed..");
+  console.info(
+    new Date().toISOString(),
+    ": ",
+    "deleted brands getting removed..",
+  );
   // await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
   // congiure parser
   const parser = new edjsParser(parserConf, {
@@ -506,7 +527,7 @@ const run = async () => {
     } else if (!newBrand && oldBrand.slug !== "infografik") {
       newBrandMapping[oldBrand.id] = await createNewBrand(oldBrand);
     } else {
-      console.log("infografik..");
+      console.info(new Date().toISOString(), ": ", "infografik..");
     }
   }
 
@@ -517,7 +538,7 @@ const run = async () => {
     } else if (!newBrand && oldCategory.slug !== "infografik") {
       newCategoryMapping[oldCategory.id] = await createNewBrand(oldCategory);
     } else {
-      console.log("infografik..");
+      console.info(new Date().toISOString(), ": ", "infografik..");
     }
   }
 
@@ -526,7 +547,7 @@ const run = async () => {
    */
   const stories = await client.query(
     new Cursor(
-      "SELECT * FROM story where content_data is not null and status='published' and author_id is not null",
+      "SELECT * FROM story WHERE status='published' and author_id is not null ORDER BY published_at",
     ),
   );
 
@@ -545,243 +566,352 @@ const run = async () => {
        * @property {string} ratio - Videonun en-boy oranı (aspect ratio).
        */
 
-      /**
-       * @type {VideoMetadata | undefined}
-       */
-      let videoMeta;
+      // if (!row.images || row.images.length < 1) {
+      //   console.info(new Date().toISOString(),": ","no image..");
+      //   continue;
+      // }
 
-      if (row.video) {
-        /**
-         * @type {VideoMetadata | undefined}
-         */
-        const exist = db.data.ratios.find((r) => r.id === row.id.toString());
-
-        if (exist) {
-          videoMeta = exist;
-        } else {
-          const ratio = await getAspectRatio(row.video.source);
-
-          /**
-           * @type {VideoMetadata}
-           */
-          const metadata = {
-            id: row.id.toString(),
-            title: row.title || row.message,
-            source: row.video.source,
-            thumbnail: row.video.source.replace("original", "thumbnail.jpg"),
-            ratio: ratio,
-          };
-
-          await db.data.ratios.push(metadata);
-
-          await db.write();
-
-          videoMeta = metadata;
-        }
-      }
-
-      if (!row.images || row.images.length < 1) {
-        console.log("no image..");
-        continue;
-      }
-
-      const parsedContent = parser.parse(row.content_data);
-      const id = Math.random().toString(36).substring(2, 18);
       const relatedAuthor = authors.find((i) => i.id === row.author_id);
 
       if (!relatedAuthor) {
-        console.log(`author ${row.author_id} is not found`);
+        console.info(
+          new Date().toISOString(),
+          ": ",
+          `author ${row.author_id} is not found`,
+        );
         continue;
       }
-
       const newDbEditor = relatedAuthor.mapped;
+
       if (
         !newDbEditor ||
         (!newBrandMapping[row.brand_id] && !newCategoryMapping[row.category_id])
       ) {
-        console.log("editor brand or category does not exist");
+        console.info(
+          new Date().toISOString(),
+          ": ",
+          "editor brand or category does not exist",
+        );
         continue;
-      } else {
-        // create news
-        const brand = newBrandMapping[row.brand_id]
-          ? newBrandMapping[row.brand_id]
-          : newCategoryMapping[row.category_id];
-        if (brand) {
-          /**
-           * @type {News}
-           */
-          const newsBody = {
-            id,
-            slug: `${row.slug?.slice(0, 239)}-${id}`,
-            title: row.title,
-            description: row.message,
-            content: parsedContent,
-            brand_id: brand.id,
-            seo: row.seo,
-            status: "published",
-            is_premium: row.premium,
-            thumbnails: {
-              original: row.images[0]?.url,
-              "3x2": row.images[0]?.url,
-              "4x3": row.images[0]?.url,
-              "9x16": row.images[0]?.url,
-            },
-            number_of_views: row.stat_views,
-            import_id: row.id,
-            published_at: row.published_at,
-            created_by: newDbEditor.id,
-            created_at: row.created_at,
-            updated_at: row.updated_at,
-            type: "news",
-          };
-          /**
-           * @type { Columns | undefined }
-           */
-          let columnBody;
+      }
 
+      const brand = newBrandMapping[row.brand_id]
+        ? newBrandMapping[row.brand_id]
+        : newCategoryMapping[row.category_id];
+
+      if (!brand) {
+        continue;
+      }
+
+      if (
+        brand.slug === "yasam" &&
+        newDbEditor.fullname === "Abdullah Aydemir"
+      ) {
+        console.info(
+          new Date().toISOString(),
+          ": ",
+          "Abdullah Aydemir skipped",
+        );
+        continue;
+      }
+
+      try {
+        const creationProcess = async () => {
           /**
-           * @type { Array<"Taceddin Kutay" | "Cüneyt Polat" | "Yusuf Alabarda"> }
+           * @type {VideoMetadata | undefined}
            */
-          const columnEditors = [
-            "Taceddin Kutay",
-            "Cüneyt Polat",
-            "Yusuf Alabarda",
-          ];
+          let videoMeta;
 
-          if (brand.slug === "yakin-plan") {
-            if (columnEditors.includes(newDbEditor.fullname)) {
-              let writerId;
+          if (row.video) {
+            /**
+             * @type {VideoMetadata | undefined}
+             */
+            const exist = db.data.ratios.find(
+              (r) => r.id === row.id.toString(),
+            );
 
-              const writer = writers.find(
-                (wr) => wr.fullname === newDbEditor.fullname,
+            if (exist) {
+              videoMeta = exist;
+            } else {
+              console.info(
+                new Date().toISOString(),
+                ": ",
+                "started: extracting metadata",
+              );
+              const ratio = await getAspectRatio(row.video.source);
+              console.info(
+                new Date().toISOString(),
+                ": ",
+                "extracted news metadata",
               );
 
-              writerId = writer?.id;
+              if (ratio !== false) {
+                /**
+                 * @type {VideoMetadata}
+                 */
+                const metadata = {
+                  id: row.id.toString(),
+                  title: row.title || row.message,
+                  source: row.video.source,
+                  thumbnail: row.video.source.replace(
+                    "original",
+                    "thumbnail.jpg",
+                  ),
+                  ratio: ratio,
+                };
 
-              if (!writerId) {
-                const newWriter = await createWriter(newDbEditor);
+                await db.data.ratios.push(metadata);
 
-                writers.push(newWriter);
+                await db.write();
 
-                writerId = newWriter.id;
+                videoMeta = metadata;
               }
-
-              columnBody = {
-                id,
-                title: row.title,
-                description: row.message,
-                content: parsedContent,
-                slug: `${row.slug}-${id}`,
-                brand_id: brand.id,
-                seo: row.seo,
-                status: "published",
-                is_active: true,
-                thumbnails: {
-                  original: row.images[0]?.url,
-                  "3x2": row.images[0]?.url,
-                  "4x3": row.images[0]?.url,
-                  "9x16": row.images[0]?.url,
-                },
-                number_of_views: row.stat_views,
-                import_id: row.id,
-                writer_id: writerId,
-
-                createdAt: row.created_at,
-                updatedAt: row.updated_at,
-              };
             }
           }
 
-          try {
-            const creationProcess = async () => {
-              if (videoMeta) {
-                if (videoMeta.ratio === "9:16") {
-                  console.log("creating shorts");
-                  await createShorts({
-                    id,
-                    slug: `${row.slug}-${id}`,
-                    title: row.title,
-                    description: row.message,
-                    brand_id: brand.id,
-                    status: "published",
-                    url: row.video.playlist,
-                    thumbnails: {
-                      original: row.images[0]?.url,
-                      "3x2": row.images[0]?.url,
-                      "4x3": row.images[0]?.url,
-                      "9x16": row.images[0]?.url,
-                    },
-                    number_of_views: row.stat_views,
-                    import_id: row.id,
-                    created_by: newDbEditor.id,
-                    created_at: row.created_at,
-                    updated_at: row.updated_at,
-                  });
-                } else {
-                  console.log("creating video news");
-                  /**
-                   * Creating video news
-                   */
-                  const exist = await createNews({
-                    id,
-                    slug: `${row.slug.slice(0, 239)}-${id}`,
-                    title: row.title,
-                    description: row.message,
-                    brand_id: brand.id,
-                    seo: row.seo,
-                    status: "published",
-                    is_premium: row.premium,
-                    video: row.video.playlist,
-                    thumbnails: {
-                      original: row.images[0]?.url,
-                      "3x2": row.images[0]?.url,
-                      "4x3": row.images[0]?.url,
-                      "9x16": row.images[0]?.url,
-                    },
-                    number_of_views: row.stat_views,
-                    import_id: row.id,
-                    published_at: row.published_at,
-                    created_by: newDbEditor.id,
-                    created_at: row.created_at,
-                    updated_at: row.updated_at,
-                    type: "video",
-                  });
+          const id = Math.random().toString(36).substring(2, 18);
 
-                  // create news <> editor relations
+          let newsMeta = db.data.news.find(
+            (r) => r.id.toString() === row.id.toString(),
+          );
 
-                  if (exist !== false) {
-                    await createEditorNewsRelation(id, newDbEditor.id);
-                  }
-                }
-              } else if (columnBody) {
-                await createColumn(columnBody);
-              } else {
-                const exist = await createNews(newsBody);
+          if (!newsMeta) {
+            console.log(
+              new Date().toISOString(),
+              ": ",
+              "generating list_title",
+            );
+            const list_title = (
+              await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                store: true,
+                messages: [
+                  {
+                    role: "system",
+                    content:
+                      "Sen bir başlık kısaltma uzmanısın. Sana verilen başlığı 60 karakterin altında olacak şekilde yeniden yaz. Başlığın tarzını ve mesajını koru. Sadece kısaltılmış başlığı döndür, başka açıklama yapma.",
+                  },
+                  {
+                    role: "user",
+                    content: row.title || row.message,
+                  },
+                ],
+              })
+            ).choices[0].message.content;
 
-                // create news <> editor relations
+            console.log(new Date().toISOString(), ": ", "generated list_title");
 
-                if (exist !== false) {
-                  await createEditorNewsRelation(id, newDbEditor.id);
-                }
-              }
+            newsMeta = {
+              id: row.id.toString(),
+              title: row.title || row.message,
+              list_title,
             };
 
-            promises.push(creationProcess());
+            await db.data.news.push(newsMeta);
 
-            if (promises.length > BATCH_COUNT - 1) {
-              console.log("executing " + BATCH_COUNT);
-              await Promise.all(promises).catch(console.error);
-
-              promises = [];
-            }
-          } catch (err) {
-            console.error(err);
+            await db.write();
           }
+
+          const list_title =
+            (row.title || row.message).length <= 60
+              ? row.title || row.message
+              : newsMeta.list_title;
+
+          if (row.content_data) {
+            const parsedContent = parser.parse(row.content_data);
+
+            /**
+             * @type {News}
+             */
+            const newsBody = {
+              id,
+              slug: `${slugify(row.slug || row.title || list_title)
+                .toLowerCase()
+                .slice(0, 239)}-${id}`,
+              title: row.title || list_title,
+              list_title,
+              description: row.message,
+              content: parsedContent,
+              brand_id: brand.id,
+              seo: row.seo,
+              status: "published",
+              is_premium: row.premium,
+              thumbnails: {
+                original: row.images[0]?.url,
+                "3x2": row.images[0]?.url,
+                "4x3": row.images[0]?.url,
+                "9x16": row.images[0]?.url,
+              },
+              number_of_views: row.stat_views,
+              import_id: row.id,
+              published_at: row.published_at,
+              created_by: newDbEditor.id,
+              created_at: row.created_at,
+              updated_at: row.updated_at,
+              type: "news",
+            };
+
+            /**
+             * @type { Columns | undefined }
+             */
+            let columnBody;
+
+            /**
+             * @type { Array<"Taceddin Kutay" | "Cüneyt Polat" | "Yusuf Alabarda" | "Mehmet Kancı"> }
+             */
+            const columnEditors = [
+              "Taceddin Kutay",
+              "Cüneyt Polat",
+              "Yusuf Alabarda",
+              "Mehmet Kancı",
+            ];
+
+            if (brand.slug === "yakin-plan") {
+              if (columnEditors.includes(newDbEditor.fullname)) {
+                let writerId;
+
+                const writer = writers.find(
+                  (wr) => wr.fullname === newDbEditor.fullname,
+                );
+
+                writerId = writer?.id;
+
+                if (!writerId) {
+                  const newWriter = await createWriter(newDbEditor);
+
+                  writers.push(newWriter);
+
+                  writerId = newWriter.id;
+                }
+
+                columnBody = {
+                  id,
+                  title: row.title || list_title,
+                  description: row.message,
+                  content: parsedContent,
+                  slug: `${slugify(row.slug || row.title || list_title).toLowerCase()}-${id}`,
+                  brand_id: brand.id,
+                  seo: row.seo,
+                  status: "published",
+                  is_active: true,
+                  thumbnails: {
+                    original: row.images[0]?.url,
+                    "3x2": row.images[0]?.url,
+                    "4x3": row.images[0]?.url,
+                    "9x16": row.images[0]?.url,
+                  },
+                  number_of_views: row.stat_views,
+                  import_id: row.id,
+                  writer_id: writerId,
+
+                  createdAt: row.created_at,
+                  updatedAt: row.updated_at,
+                };
+              }
+            }
+
+            if (columnBody) {
+              console.info(new Date().toISOString(), ": ", "creating column");
+              await createColumn(columnBody);
+            } else {
+              console.info(new Date().toISOString(), ": ", "creating news");
+              await createNews(newsBody, newDbEditor.id);
+            }
+
+            return;
+          }
+
+          if (!videoMeta) {
+            return;
+          }
+
+          if (videoMeta.ratio === "9:16") {
+            console.info(new Date().toISOString(), ": ", "creating shorts");
+            await createShorts({
+              id,
+              slug: `${slugify(row.slug || row.title || list_title).toLowerCase()}-${id}`,
+              title: row.title || list_title,
+              description: row.message,
+              brand_id: brand.id,
+              status: "published",
+              url: row.video.playlist,
+              thumbnails: {
+                original: row.images[0]?.url || videoMeta.thumbnail,
+                "3x2": row.images[0]?.url || videoMeta.thumbnail,
+                "4x3": row.images[0]?.url || videoMeta.thumbnail,
+                "9x16": row.images[0]?.url || videoMeta.thumbnail,
+              },
+              number_of_views: row.stat_views,
+              import_id: row.id,
+              created_by: newDbEditor.id,
+              created_at: row.created_at,
+              updated_at: row.updated_at,
+            });
+
+            return;
+          }
+
+          console.info(new Date().toISOString(), ": ", "creating video news");
+
+          /**
+           * Creating video news
+           */
+          const exist = await createNews(
+            {
+              id,
+              slug: `${slugify(row.slug || row.title || list_title)
+                ?.toLowerCase()
+                .slice(0, 239)}-${id}`,
+              title: row.title || list_title,
+              list_title,
+              description: row.message,
+              brand_id: brand.id,
+              seo: row.seo,
+              status: "published",
+              is_premium: row.premium,
+              video: row.video.playlist,
+              thumbnails: {
+                original: row.images[0]?.url || videoMeta.thumbnail,
+                "3x2": row.images[0]?.url || videoMeta.thumbnail,
+                "4x3": row.images[0]?.url || videoMeta.thumbnail,
+                "9x16": row.images[0]?.url || videoMeta.thumbnail,
+              },
+              number_of_views: row.stat_views,
+              import_id: row.id,
+              published_at: row.published_at,
+              created_by: newDbEditor.id,
+              created_at: row.created_at,
+              updated_at: row.updated_at,
+              type: "video",
+            },
+            newDbEditor.id,
+          );
+        };
+
+        promises.push(creationProcess());
+
+        if (promises.length > BATCH_COUNT - 1) {
+          console.info(
+            new Date().toISOString(),
+            ": ",
+            "executing " + BATCH_COUNT,
+          );
+          await Promise.all(promises).catch(console.error);
+
+          promises = [];
         }
+
+        await Promise.all(promises).catch(console.error);
+      } catch (err) {
+        console.error(err);
       }
     }
     if (promises.length) {
-      console.log("executing " + promises.length);
+      console.info(
+        new Date().toISOString(),
+        ": ",
+        "executing " + promises.length,
+      );
       await Promise.all(promises).catch(console.error);
       promises = [];
     }
@@ -794,7 +924,7 @@ const run = async () => {
 
   const res = await process();
 
-  console.log("Migration done...");
+  console.info(new Date().toISOString(), ": ", "Migration done...");
 
   await client.end();
 };
