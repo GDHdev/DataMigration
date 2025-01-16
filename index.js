@@ -547,7 +547,7 @@ const run = async () => {
    */
   const stories = await client.query(
     new Cursor(
-      "SELECT * FROM story WHERE status='published' and author_id is not null ORDER BY published_at",
+      "SELECT * FROM story WHERE status='published' and author_id is not null ORDER BY published_at DESC",
     ),
   );
 
