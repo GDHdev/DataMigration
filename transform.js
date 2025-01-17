@@ -118,10 +118,10 @@ const newDbConfigs = {
   user: process.env.NEW_DB_USER,
   password: process.env.NEW_DB_PASSWORD,
   database: process.env.NEW_DB_DATABASE,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  //   requestCert: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+    requestCert: false,
+  },
 };
 
 const newClient = new Pool(newDbConfigs);
