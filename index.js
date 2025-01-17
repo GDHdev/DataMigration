@@ -12,7 +12,7 @@ import { getAspectRatio } from "./media.js";
 
 import OpenAI from "openai";
 
-import slugify from "slugify";
+import orSlugify from "slugify";
 
 import workerpool from "workerpool";
 
@@ -31,6 +31,17 @@ dotenv.config();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const { Client } = pg;
+
+export const slugify = (...args) => {
+  if (!args[1]) {
+    args[1] = {
+      lower: true,
+      strict: true,
+    };
+  }
+
+  return orSlugify(...args);
+};
 
 /**
  * Bir tablo kaydını temsil eden obje.
@@ -165,6 +176,22 @@ const { Client } = pg;
  * @property {string} updated_at - Short içeriğinin güncellenme zamanı (timestamptz).
  * @property {string|null} deletedAt - Short içeriğinin silinme zamanı (timestamptz(6)), eğer silinmediyse `null`.
  * @property {string} import_id - Short içeriği için ithalat kimliği (varchar(255)).
+ */
+
+/**
+ * @typedef {Object} Infographics
+ * @property {string} id - Unique identifier for the record (max length: 255).
+ * @property {string} description - Detailed description of the record (text type).
+ * @property {string} image_url - URL of the image (max length: 255).
+ * @property {Object} seo - SEO configuration stored as JSON.
+ * @property {boolean} isActive - Indicates if the record is active.
+ * @property {number} order - Order of the record (integer).
+ * @property {string} created_at - Timestamp when the record was created (with timezone).
+ * @property {string} updated_at - Timestamp when the record was last updated (with timezone).
+ * @property {string|null} deletedAt - Timestamp when the record was deleted (nullable, with 6 fractional seconds).
+ * @property {string} title - Title of the record (max length: 255).
+ * @property {string} slug - URL-friendly identifier (max length: 255).
+ * @property {string} import_id - importId identifier (max length: 255).
  */
 
 const oldDbConfigs = {
@@ -479,6 +506,32 @@ async function createShorts(shorts) {
   return res.rows[0];
 }
 
+/**
+ * @param {Infographics} infographic
+ * @returns {Promise<Infographics | false>}
+ */
+async function createInfographics(infographic) {
+  const query = `INSERT INTO infographics(${Object.keys(infographic)
+    .map((c) => `"${c}"`)
+    .join(
+      ",",
+    )}) VALUES (${Object.keys(infographic).map((item, index) => `$${index + 1}`)})`;
+  const values = Object.values(infographic);
+
+  const exist = await newClient.query(
+    `SELECT * FROM infographics WHERE import_id='${infographic.import_id}'`,
+  );
+
+  if (exist.rows[0]) {
+    //console.info(new Date().toISOString(),": ","exist", exist.rows[0].id);
+    return false;
+  }
+
+  const res = await newClient.query(query, values);
+
+  return res.rows[0];
+}
+
 const run = async () => {
   const READ_COUNT = 1000; // slice length
   const BATCH_COUNT = 512;
@@ -716,6 +769,30 @@ const run = async () => {
             (row.title || row.message).length <= 60
               ? row.title || row.message
               : newsMeta.list_title;
+
+          if (brand.slug === "infografik") {
+            console.info(
+              new Date().toISOString(),
+              ": ",
+              "creating infographics",
+            );
+
+            await createInfographics({
+              id,
+              slug: `${slugify(row.slug || row.title || list_title)
+                .toLowerCase()
+                .slice(0, 239)}-${id}`,
+              title: row.title || list_title,
+              description: row.message,
+              created_at: row.created_at,
+              updated_at: row.updated_at,
+              isActive: true,
+              seo: row.seo,
+              image_url: row.images[0]?.url,
+              import_id: row.id,
+              order: "0",
+            });
+          }
 
           if (row.content_data) {
             const parsedContent = parser.parse(row.content_data);

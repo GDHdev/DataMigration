@@ -70,6 +70,7 @@
   {
     "id": 8,
     "name": "pozitif biraz",
+    "mapped": "pozitif-biraz",
     "slug": "pozitifbiraz",
     "icon": {
       "key": "538f5b3b-f316-455d-7e28-93bbf41e5000",
