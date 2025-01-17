@@ -770,7 +770,11 @@ const run = async () => {
               ? row.title || row.message
               : newsMeta.list_title;
 
-          if (brand.slug === "infografik") {
+          if (
+            brand.slug === "infografik" &&
+            row.images &&
+            row.images.length > 0
+          ) {
             console.info(
               new Date().toISOString(),
               ": ",
