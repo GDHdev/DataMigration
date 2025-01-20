@@ -15,6 +15,7 @@ import OpenAI from "openai";
 import orSlugify from "slugify";
 
 import workerpool from "workerpool";
+import * as emoji from "node-emoji";
 
 const pool = workerpool.pool();
 
