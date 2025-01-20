@@ -6,6 +6,7 @@ import bcryptjs from "bcryptjs";
 import fs from "fs/promises";
 import dotenv from "dotenv";
 
+import * as emoji from "node-emoji";
 import OpenAI from "openai";
 
 import orSlugify from "slugify";
@@ -127,6 +128,19 @@ const newDbConfigs = {
 const newClient = new Pool(newDbConfigs);
 await newClient.connect();
 
+/**
+ * @param {string} title
+ *
+ * @returns {string}
+ */
+function cleanTitle(title) {
+  const strippedEmojis = emoji.strip(title);
+  const trimmed = strippedEmojis.trim();
+  const dotless = trimmed.endsWith(".") ? trimmed.slice(0, -1) : trimmed;
+
+  return dotless;
+}
+
 const run = async () => {
   const READ_COUNT = 1000; // slice length
   const BATCH_COUNT = 512;
@@ -135,7 +149,9 @@ const run = async () => {
   /**
    * @type { News[] }
    */
-  const news = await newClient.query("SELECT * FROM news");
+  const news = await newClient.query(
+    "SELECT * FROM news ORDER BY published_at DESC",
+  );
   console.log("fetched news", news.rows.length);
 
   const process = async () => {
@@ -147,21 +163,26 @@ const run = async () => {
     for (const newsRow of newsSlice) {
       try {
         const updateNewsProcess = async () => {
-          const trimmed = newsRow.title.trim();
-          const dotless = trimmed.endsWith(".")
-            ? newsRow.title.slice(0, -1)
-            : newsRow.title;
+          const dotless = cleanTitle(newsRow.title);
 
-          const trimmedList = newsRow.list_title.trim();
-          const dotlessList = trimmedList.endsWith(".")
-            ? newsRow.list_title.slice(0, -1)
-            : newsRow.list_title;
-          const query = `UPDATE news SET slug=$1,title=$2,list_title=$3 WHERE id='${newsRow.id}'`;
-          const values = [slugify(newsRow.slug), dotless, dotlessList];
+          const dotlessList = cleanTitle(newsRow.list_title);
 
-          await newClient.query(query, values).catch(console.log);
+          const query = {
+            // give the query a unique name
+            name: "update-news" + Date.now().toString(),
+            text: `UPDATE news SET "slug"=$1, "title"=$2, "list_title"=$3 WHERE "id"=$4 RETURNING *`,
+            values: [slugify(newsRow.slug), dotless, dotlessList, newsRow.id],
+          };
 
-          console.log("UPDATED NEWS: ", newsRow.id, " ", newsRow.title);
+          const res = await newClient.query(query).catch(console.log);
+
+          console.log(
+            "UPDATED NEWS: ",
+            slugify(newsRow.slug),
+            dotless,
+            dotlessList,
+            newsRow.id,
+          );
         };
 
         promises.push(updateNewsProcess());
@@ -209,10 +230,7 @@ const run = async () => {
     for (let shortsRow of shortsSlice) {
       try {
         const updateShortsProcess = async () => {
-          const trimmed = shortsRow.title.trim();
-          const dotless = trimmed.endsWith(".")
-            ? shortsRow.title.slice(0, -1)
-            : shortsRow.title;
+          const dotless = cleanTitle(shortsRow.title);
 
           const query = `UPDATE shorts SET slug=$1,title=$2 WHERE id = '${shortsRow.id}'`;
           const values = [slugify(shortsRow.slug), dotless];

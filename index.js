@@ -604,6 +604,19 @@ const run = async () => {
     ),
   );
 
+  /**
+   * @param {string} title
+   *
+   * @returns {string}
+   */
+  function cleanTitle(title) {
+    const strippedEmojis = emoji.strip(title);
+    const trimmed = strippedEmojis.trim();
+    const dotless = trimmed.endsWith(".") ? trimmed.slice(0, -1) : trimmed;
+
+    return dotless;
+  }
+
   const process = async () => {
     let promises = [];
     const slice = await stories.read(READ_COUNT);
@@ -809,7 +822,7 @@ const run = async () => {
               slug: `${slugify(row.slug || row.title || list_title)
                 .toLowerCase()
                 .slice(0, 239)}-${id}`,
-              title: row.title || list_title,
+              title: cleanTitle(row.title || list_title),
               list_title,
               description: row.message,
               content: parsedContent,
@@ -943,7 +956,7 @@ const run = async () => {
               slug: `${slugify(row.slug || row.title || list_title)
                 ?.toLowerCase()
                 .slice(0, 239)}-${id}`,
-              title: row.title || list_title,
+              title: cleanTitle(row.title || list_title),
               list_title,
               description: row.message,
               brand_id: brand.id,
