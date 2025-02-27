@@ -1,6 +1,6 @@
 import orSlugify from "slugify";
 
-const target = `'hucre'-operasyonunda-10-suc-orgutu-cokertildi-66-yakalandi.`;
+const target = `Fenerbahçe'nin yeni transferi Diego Carlos kimdir?`;
 
 export const slugify = (...args) => {
   if (!args[1]) {

@@ -5,6 +5,7 @@ import { v4 } from "uuid";
 import bcryptjs from "bcryptjs";
 import fs from "fs/promises";
 import dotenv from "dotenv";
+import Fuse from "fuse.js";
 
 import { JSONFilePreset } from "lowdb/node";
 
@@ -195,6 +196,77 @@ export const slugify = (...args) => {
  * @property {string} import_id - importId identifier (max length: 255).
  */
 
+/**
+ * @typedef {Object} Author
+ * @property {number} id - Unique identifier (serial4).
+ * @property {string} full_name - Full name of the user (varchar).
+ * @property {Object} picture - User's profile picture (jsonb).
+ * @property {string} email - Email address (varchar).
+ * @property {Date} updated_at - Timestamp of the last update.
+ * @property {Date} created_at - Timestamp of creation.
+ * @property {number} featured - Featured status (int2).
+ * @property {string} slug - SEO-friendly identifier (varchar).
+ * @property {string} description - Description of the user (varchar).
+ * @property {Object} seo - SEO-related metadata (jsonb).
+ * @property {number} user_id - Associated user ID (int4).
+ */
+
+/**
+ * @typedef {Object} Editor
+ * @property {string} id - Unique identifier (varchar(255)).
+ * @property {string} email - User's email address (varchar(255)).
+ * @property {string} fullname - Full name of the user (varchar(255)).
+ * @property {string} password - Hashed password (varchar(255)).
+ * @property {string} image_url - Profile image URL (varchar(255)).
+ * @property {boolean} is_active - Indicates if the user is active.
+ * @property {string} otp - One-time password (varchar(255)).
+ * @property {number} otp_throttle - Throttle for OTP attempts (int4).
+ * @property {Date} otp_expire - OTP expiration timestamp (timestamptz).
+ * @property {string} role_id - Role identifier (varchar(255)).
+ * @property {boolean} is_email_verified - Email verification status.
+ * @property {boolean} is_2fa_enabled - Two-factor authentication status.
+ * @property {boolean} should_force_change_password - Force password change flag.
+ * @property {string} token - Authentication token (varchar(255)).
+ * @property {string} reports_to - Manager or supervisor ID (varchar(255)).
+ * @property {string} created_by - ID of the user who created this account (varchar(255)).
+ * @property {Date} created_at - Timestamp of account creation (timestamptz).
+ * @property {Date} updated_at - Timestamp of last update (timestamptz).
+ * @property {Date|null} deletedAt - Soft delete timestamp (timestamptz(6)), null if not deleted.
+ * @property {string} title - User's title (varchar(255)).
+ */
+
+/**
+ * @typedef {Object} Brand
+ * @property {string} id - Unique identifier (varchar(255)).
+ * @property {string} name - Name of the category (varchar(255)).
+ * @property {string} slug - SEO-friendly identifier (varchar(255)).
+ * @property {string} description - Description of the category (varchar(255)).
+ * @property {string} icon_url - URL of the category icon (varchar(255)).
+ * @property {Object} seo - SEO metadata (json).
+ * @property {boolean} is_active - Indicates if the category is active.
+ * @property {number} order - Display order of the category (int4).
+ * @property {Date} created_at - Timestamp of creation (timestamptz).
+ * @property {Date} updated_at - Timestamp of last update (timestamptz).
+ * @property {Date|null} deleted_at - Soft delete timestamp (timestamptz), null if not deleted.
+ */
+
+/**
+ * @typedef {Object} Writer
+ * @property {string} id - Unique identifier for the user.
+ * @property {string} fullname - Full name of the user.
+ * @property {string} email - Email address of the user.
+ * @property {string} password - Password for the user account.
+ * @property {boolean} is_active - Indicates if the user's account is active.
+ * @property {string} image_url - URL of the user's profile image.
+ * @property {string} description - Description or bio of the user.
+ * @property {string} created_at - Timestamp of when the account was created.
+ * @property {string} updated_at - Timestamp of the last update to the account.
+ * @property {string} user_type - Type of user, based on an enumeration.
+ * @property {string} [deletedAt] - Timestamp of when the account was deleted, if applicable.
+ * @property {string} slug - URL-friendly identifier for the user.
+ * @property {Object} socials - JSON object containing social media links or other social information.
+ */
+
 const oldDbConfigs = {
   host: process.env.OLD_DB_HOST,
   port: parseInt(process.env.OLD_DB_PORT),
@@ -310,30 +382,47 @@ const createEditor = async (editor) => {
   await newClient.query(query, values);
 
   const { rows: inserted } = await newClient.query(
-    `SELECT * FROM editors WHERE id='${id}'`,
+    `SELECT * FROM editors WHERE id='${id}'`
   );
 
   return inserted[0];
 };
 
 const getAuthors = async () => {
-  const { rows: authors } = await client.query(
-    `SELECT author.* , to_json(u) "user" FROM author LEFT JOIN "user" as u ON author.user_id = u.id`,
+  const authorResult = await client.query(
+    `SELECT author.* , to_json(u) "user" FROM author LEFT JOIN "user" as u ON author.user_id = u.id`
   );
 
-  const { rows: editors } = await newClient.query(`SELECT * from editors`);
+  /** @type {Array<Author>} */
+  const authors = authorResult.rows;
+
+  const editorResult = await newClient.query(`SELECT * from editors`);
+  /** @type {Array<Editor>} */
+  const editors = editorResult.rows;
+
+  const fuse = new Fuse(editors, {
+    shouldSort: true,
+    keys: ["fullname"],
+  });
 
   for (const author of authors) {
-    const relatedEditor = editors.find(
-      (i) =>
-        i.email === author.email ||
-        i.email === author.user?.email ||
-        i.fullname === author.full_name,
-    );
+    // const relatedEditor = editors.find(
+    //   (i) =>
+    //     i.email === author.email ||
+    //     i.email === author.user?.email ||
+    //     i.fullname === author.full_name,
+    // );
+
+    const relatedEditor = fuse.search(author.full_name)[0].item;
+
     if (relatedEditor) {
       author.mapped = relatedEditor;
     } else {
-      author.mapped = await createEditor(author);
+      console.debug(
+        "cannot find related editor for ",
+        JSON.stringify(author, null, 2)
+      );
+      //author.mapped = await createEditor(author);
     }
   }
 
@@ -359,7 +448,7 @@ const createWriter = async (writer) => {
   await newClient.query(query, values);
 
   const { rows: inserted } = await newClient.query(
-    `SELECT * FROM writers WHERE id='${id}'`,
+    `SELECT * FROM writers WHERE id='${id}'`
   );
 
   console.info(new Date().toISOString(), ": ", inserted);
@@ -377,10 +466,10 @@ const createNewBrand = async (brand) => {
   console.info(
     new Date().toISOString(),
     ": ",
-    `creating new brand ${brand.mapped}`,
+    `creating new brand ${brand.mapped}`
   );
   const { rows: existed } = await newClient.query(
-    `SELECT * FROM brands WHERE slug='${brand.mapped}'`,
+    `SELECT * FROM brands WHERE slug='${brand.mapped}'`
   );
   if (existed.length) {
     return existed[0];
@@ -402,7 +491,7 @@ const createNewBrand = async (brand) => {
   const res = await newClient.query(query, values);
 
   const { rows: inserted } = await newClient.query(
-    `SELECT * FROM brands WHERE id='${id}'`,
+    `SELECT * FROM brands WHERE id='${id}'`
   );
 
   console.info(new Date().toISOString(), ": ", "inserted", inserted[0]);
@@ -420,12 +509,12 @@ const createNewBrand = async (brand) => {
 const createNews = async (news, editorId) => {
   // console.info(new Date().toISOString(),": ",`creating news ${news.id}`);
   const query = `INSERT INTO news(${Object.keys(news).join(
-    ",",
+    ","
   )}) VALUES (${Object.keys(news).map((item, index) => `$${index + 1}`)})`;
   const values = Object.values(news);
 
   const exist = await newClient.query(
-    `SELECT * FROM news WHERE import_id='${news.import_id}'`,
+    `SELECT * FROM news WHERE import_id='${news.import_id}'`
   );
 
   if (exist.rows[0]) {
@@ -450,13 +539,13 @@ const createColumn = async (column) => {
   // console.info(new Date().toISOString(),": ",`creating column ${column.id}`);
   const query = `INSERT INTO columns(${Object.keys(column)
     .map((c) => `"${c}"`)
-    .join(
-      ",",
-    )}) VALUES (${Object.keys(column).map((item, index) => `$${index + 1}`)})`;
+    .join(",")}) VALUES (${Object.keys(column).map(
+    (item, index) => `$${index + 1}`
+  )})`;
   const values = Object.values(column);
 
   const exist = await newClient.query(
-    `SELECT * FROM columns WHERE import_id='${column.import_id}'`,
+    `SELECT * FROM columns WHERE import_id='${column.import_id}'`
   );
 
   if (exist.rows[0]) {
@@ -488,13 +577,13 @@ const createEditorNewsRelation = async (newsId, editorId) => {
 async function createShorts(shorts) {
   const query = `INSERT INTO shorts(${Object.keys(shorts)
     .map((c) => `"${c}"`)
-    .join(
-      ",",
-    )}) VALUES (${Object.keys(shorts).map((item, index) => `$${index + 1}`)})`;
+    .join(",")}) VALUES (${Object.keys(shorts).map(
+    (item, index) => `$${index + 1}`
+  )})`;
   const values = Object.values(shorts);
 
   const exist = await newClient.query(
-    `SELECT * FROM shorts WHERE import_id='${shorts.import_id}'`,
+    `SELECT * FROM shorts WHERE import_id='${shorts.import_id}'`
   );
 
   if (exist.rows[0]) {
@@ -514,13 +603,13 @@ async function createShorts(shorts) {
 async function createInfographics(infographic) {
   const query = `INSERT INTO infographics(${Object.keys(infographic)
     .map((c) => `"${c}"`)
-    .join(
-      ",",
-    )}) VALUES (${Object.keys(infographic).map((item, index) => `$${index + 1}`)})`;
+    .join(",")}) VALUES (${Object.keys(infographic).map(
+    (item, index) => `$${index + 1}`
+  )})`;
   const values = Object.values(infographic);
 
   const exist = await newClient.query(
-    `SELECT * FROM infographics WHERE import_id='${infographic.import_id}'`,
+    `SELECT * FROM infographics WHERE import_id='${infographic.import_id}'`
   );
 
   if (exist.rows[0]) {
@@ -542,12 +631,19 @@ const run = async () => {
   await newClient.connect();
 
   const authors = await getAuthors();
+
+  /** @type {Array<Writer>} */
   const writers = await getWriters();
+
+  const writerSearch = new Fuse(writers, {
+    shouldSort: true,
+    keys: ["fullname"],
+  });
 
   console.info(
     new Date().toISOString(),
     ": ",
-    "deleted brands getting removed..",
+    "deleted brands getting removed.."
   );
   // await newClient.query("DELETE FROM brands WHERE deleted_at is not null");
   // congiure parser
@@ -568,18 +664,23 @@ const run = async () => {
   oldBrands = oldBrands.filter((i) => !!i.mapped);
   oldCategories = oldCategories.filter((i) => !!i.mapped);
 
-  const { rows: newBrands } = await newClient.query(
-    "SELECT * FROM brands WHERE deleted_at is null",
+  const brandsResult = await newClient.query(
+    "SELECT * FROM brands WHERE deleted_at is null"
   );
+
+  /** @type {Array<Brand>} */
+  const newBrands = brandsResult.rows;
 
   const newBrandMapping = {};
   const newCategoryMapping = {};
+
   for (let oldBrand of oldBrands) {
     const newBrand = newBrands.find((i) => i.slug === oldBrand.mapped);
     if (newBrand) {
       newBrandMapping[oldBrand.id] = newBrand;
     } else if (!newBrand && oldBrand.slug !== "infografik") {
-      newBrandMapping[oldBrand.id] = await createNewBrand(oldBrand);
+      console.log("cannot find brand", "oldBrand", oldBrand);
+      //newBrandMapping[oldBrand.id] = await createNewBrand(oldBrand);
     } else {
       console.info(new Date().toISOString(), ": ", "infografik..");
     }
@@ -590,7 +691,8 @@ const run = async () => {
     if (newBrand) {
       newCategoryMapping[oldCategory.id] = newBrand;
     } else if (!newBrand && oldCategory.slug !== "infografik") {
-      newCategoryMapping[oldCategory.id] = await createNewBrand(oldCategory);
+      console.log("cannot find brand", "oldBrand", oldBrand);
+      //newCategoryMapping[oldCategory.id] = await createNewBrand(oldCategory);
     } else {
       console.info(new Date().toISOString(), ": ", "infografik..");
     }
@@ -601,8 +703,8 @@ const run = async () => {
    */
   const stories = await client.query(
     new Cursor(
-      "SELECT * FROM story WHERE status='published' and author_id is not null ORDER BY published_at DESC",
-    ),
+      "SELECT * FROM story WHERE status='published' and author_id is not null ORDER BY published_at DESC"
+    )
   );
 
   /**
@@ -617,6 +719,12 @@ const run = async () => {
 
     return dotless;
   }
+
+  /**
+   * @param {Story} story
+   *
+   * @returns {Promise<VideoMetadata>}
+   */
 
   const process = async () => {
     let promises = [];
@@ -644,7 +752,7 @@ const run = async () => {
         console.info(
           new Date().toISOString(),
           ": ",
-          `author ${row.author_id} is not found`,
+          `author ${row.author_id} is not found`
         );
         continue;
       }
@@ -657,7 +765,7 @@ const run = async () => {
         console.info(
           new Date().toISOString(),
           ": ",
-          "editor brand or category does not exist",
+          "editor brand or category does not exist"
         );
         continue;
       }
@@ -677,7 +785,7 @@ const run = async () => {
         console.info(
           new Date().toISOString(),
           ": ",
-          "Abdullah Aydemir skipped",
+          "Abdullah Aydemir skipped"
         );
         continue;
       }
@@ -694,7 +802,7 @@ const run = async () => {
              * @type {VideoMetadata | undefined}
              */
             const exist = db.data.ratios.find(
-              (r) => r.id === row.id.toString(),
+              (r) => r.id === row.id.toString()
             );
 
             if (exist) {
@@ -703,13 +811,13 @@ const run = async () => {
               console.info(
                 new Date().toISOString(),
                 ": ",
-                "started: extracting metadata",
+                "started: extracting metadata"
               );
               const ratio = await getAspectRatio(row.video.source);
               console.info(
                 new Date().toISOString(),
                 ": ",
-                "extracted news metadata",
+                "extracted news metadata"
               );
 
               if (ratio !== false) {
@@ -722,7 +830,7 @@ const run = async () => {
                   source: row.video.source,
                   thumbnail: row.video.source.replace(
                     "original",
-                    "thumbnail.jpg",
+                    "thumbnail.jpg"
                   ),
                   ratio: ratio,
                 };
@@ -739,14 +847,14 @@ const run = async () => {
           const id = Math.random().toString(36).substring(2, 18);
 
           let newsMeta = db.data.news.find(
-            (r) => r.id.toString() === row.id.toString(),
+            (r) => r.id.toString() === row.id.toString()
           );
 
           if (!newsMeta) {
             console.log(
               new Date().toISOString(),
               ": ",
-              "generating list_title",
+              "generating list_title"
             );
             const list_title = (
               await openai.chat.completions.create({
@@ -792,7 +900,7 @@ const run = async () => {
             console.info(
               new Date().toISOString(),
               ": ",
-              "creating infographics",
+              "creating infographics"
             );
 
             await createInfographics({
@@ -865,18 +973,18 @@ const run = async () => {
               if (columnEditors.includes(newDbEditor.fullname)) {
                 let writerId;
 
-                const writer = writers.find(
-                  (wr) => wr.fullname === newDbEditor.fullname,
-                );
+                const writer = writerSearch.search(newDbEditor.fullname)[0]
+                  ?.item;
 
                 writerId = writer?.id;
 
                 if (!writerId) {
-                  const newWriter = await createWriter(newDbEditor);
+                  console.log("cannot find writer", newDbEditor.fullname);
+                  //const newWriter = await createWriter(newDbEditor);
 
-                  writers.push(newWriter);
+                  // writers.push(newWriter);
 
-                  writerId = newWriter.id;
+                  // writerId = newWriter.id;
                 }
 
                 columnBody = {
@@ -884,7 +992,9 @@ const run = async () => {
                   title: row.title || list_title,
                   description: row.message,
                   content: parsedContent,
-                  slug: `${slugify(row.slug || row.title || list_title).toLowerCase()}-${id}`,
+                  slug: `${slugify(
+                    row.slug || row.title || list_title
+                  ).toLowerCase()}-${id}`,
                   brand_id: brand.id,
                   seo: row.seo,
                   status: "published",
@@ -924,7 +1034,9 @@ const run = async () => {
             console.info(new Date().toISOString(), ": ", "creating shorts");
             await createShorts({
               id,
-              slug: `${slugify(row.slug || row.title || list_title).toLowerCase()}-${id}`,
+              slug: `${slugify(
+                row.slug || row.title || list_title
+              ).toLowerCase()}-${id}`,
               title: row.title || list_title,
               description: row.message,
               brand_id: brand.id,
@@ -979,7 +1091,7 @@ const run = async () => {
               updated_at: row.updated_at,
               type: "video",
             },
-            newDbEditor.id,
+            newDbEditor.id
           );
         };
 
@@ -989,7 +1101,7 @@ const run = async () => {
           console.info(
             new Date().toISOString(),
             ": ",
-            "executing " + BATCH_COUNT,
+            "executing " + BATCH_COUNT
           );
           await Promise.all(promises).catch(console.error);
 
@@ -1005,7 +1117,7 @@ const run = async () => {
       console.info(
         new Date().toISOString(),
         ": ",
-        "executing " + promises.length,
+        "executing " + promises.length
       );
       await Promise.all(promises).catch(console.error);
       promises = [];
